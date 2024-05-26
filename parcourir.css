@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+header .slogan h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+header .logo img {
+  height: 50px;
+}
+
+nav {
+  background-color: #333;
+  padding: 20px 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 30px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 19px;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.wrapper {
+  padding: 20px;
+  background-color: #f0f0f0;
+  min-height: calc(
+    100vh - 140px
+  ); /* Adjusted height to account for header and nav */
+}
