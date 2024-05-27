@@ -21,7 +21,7 @@
         <ul>
             <li><a href="#">Accueil</a></li>
             <li>
-                <a href="#" class="active">Tout Parcourir</a> <!-- Ajout de la classe active ici -->
+                <a href="#" class="active">Tout Parcourir</a>
                 <ul class="dropdown">
                     <li><a href="#">Activités sportives</a></li>
                     <li><a href="#">Les Sports de compétition</a></li>
@@ -36,7 +36,7 @@
     <div class="wrapper">
         <div class="sports">
             <div id="sport">
-                <img src="./img/sport_compet/basketball.jpeg" alt="">
+                <img src="./image/sport_compet/basketball.jpeg" alt="">
                 <div class="texte">
                     <p>Basketball</p>
                 </div>
@@ -45,10 +45,10 @@
                 <div class="texte">
                     <p>Football</p>
                 </div>
-                <img src="./img/sport_compet/football.jpeg" alt="">
+                <img src="./image/sport_compet/football.jpeg" alt="">
             </div>
             <div id="sport">
-                <img src="./img/sport_compet/natation.jpeg" alt="">
+                <img src="./image/sport_compet/natation.jpeg" alt="">
                 <div class="texte">
                     <p>Rugby</p>
                 </div>
@@ -57,10 +57,10 @@
                 <div class="texte">
                     <p>Tennis</p>
                 </div>
-                <img src="./img/sport_compet/plongeon.jpeg" alt="">
+                <img src="./image/sport_compet/plongeon.jpeg" alt="">
             </div>
             <div id="sport">
-                <img src="./img/sport_compet/rugby.jpeg" alt="">
+                <img src="./image/sport_compet/rugby.jpeg" alt="">
                 <div class="texte">
                     <p>Natation</p>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="texte">
                     <p>Plongeon</p>
                 </div>
-                <img src="./img/sport_compet/tennis.jpeg" alt="">
+                <img src="./image/sport_compet/tennis.jpeg" alt="">
 
             </div>
         </div>
