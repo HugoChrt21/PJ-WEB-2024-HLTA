@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+header .slogan h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+
+header .logo img {
+    height: 50px;
+    width: 50px;
+}
+
+nav {
+    background-color: #333;
+    padding: 20px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 30px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 19px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.carousel {
+    margin: 2rem auto;
+    width: 80%;
+}
+
+.section-evenement {
+    background: #fff;
+    padding: 2rem;
+    margin: 2rem auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.section-evenement h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.section-evenement p {
+    font-size: 1.2rem;
+}
+
+.pied-de-page {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.pied-de-page p {
+    margin: 0;
+}
+
+.pied-de-page ul {
+    list-style: none;
+    padding: 0;
+}
+
+.pied-de-page ul li {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.pied-de-page ul li i {
+    margin-right: 0.5rem;
+}
+
+.carousel-small {
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+#carte {
+    width: 100%;
+    height: 300px;
+    margin-top: 1rem;
+}
