@@ -2,11 +2,11 @@
 <html lang="fr">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Votre Page Web</title>
-    <link rel="stylesheet" href="accueil.css">
+    <title>Accueil</title>
+    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body>
@@ -15,7 +15,7 @@
             <h1>Sportify: Consultation Sportive</h1>
         </div>
         <div class="logo">
-            <img src="./image/logo_sportify.png" alt="Logo">
+            <img src="logo_sportify.png" alt="Logo">
         </div>
     </header>
     <nav>
@@ -36,7 +36,7 @@
     </nav>
     <div class="wrapper">
         <h2>EVENEMENT DE LA SEMAINE</h2>
-        <img src="./image/accueil/evenement-de-la-semaine.jpg" alt="Événement de la semaine">
+        <img src="evenement-de-la-semaine.jpg" alt="Événement de la semaine">
 
         <h2>NOS SPECIALITE SPORTIVES</h2>
 
@@ -44,23 +44,22 @@
             <div id="carrousel">
                 <ul class="slides">
                     <li>
-                        <img src="./image/accueil/foot.jpg" alt="Foot" width="700" height="400">
+                        <img src="foot.jpg" alt="Foot" width="700" height="400">
                     </li>
                     <li>
-                        <img src="./image/accueil/basket.jpeg" alt="Basket" width="700" height="400">
+                        <img src="basket.jpeg" alt="Basket" width="700" height="400">
                     </li>
                     <li>
-                        <img src="./image/accueil/MMA.jpg" alt="MMA" width="700" height="400">
-
+                        <img src="MMA.jpg" alt="MMA" width="700" height="400">
                     </li>
                 </ul>
                 <div class="controls">
                     <span class="prev">Précédent</span>
                     <span class="next">Suivant</span>
                 </div>
-
             </div>
         </div>
+
 
         <footer class="pied-de-page">
             <div class="conteneur">
@@ -70,13 +69,17 @@
                     <li><i class="fas fa-phone"></i> Téléphone : +33 1 23 45 67 89</li>
                     <li><i class="fas fa-map-marker-alt"></i> Adresse : 123 Rue de Sport, Paris, France</li>
                 </ul>
+                <br>
+                <h1>OÙ SOMME NOUS</h1>
             </div>
         </footer>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <div class="content">
+            <div id="map"></div>
+          </div>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
         <script src="accueil.js"></script>
-
+        
     </div>
-
 </body>
 
 </html>
