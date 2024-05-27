@@ -4,16 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - Sportify</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="accueil.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
+
 <body>
-    <header class="conteneur">
-        <h1>Bienvenue sur Sportify</h1>
-        <p>Votre plateforme de rendez-vous sportif en ligne pour la communauté Omnes Education.</p>
+    <header>
+        <div class="slogan">
+            <h1>Sportify: Consultation Sportive</h1>
+        </div>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
     </header>
+    <nav>
+        
+        <ul> 
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Tout Parcourir</a></li>
+            <li><a href="recherche.html">Recherche</a></li>
+            <li><a href="#">Rendez-vous</a></li>
+            <li><a href="compte.html">Votre Compte</a></li>
+        </ul>
+    </nav>
 
     <section class="section-evenement conteneur">
         <h2>Évènement de la semaine</h2>
@@ -71,7 +85,7 @@
         }).addTo(carte);
 
         L.marker([48.851292238925666, 2.288565896514548]).addTo(carte)
-            .bindPopup('ECE Paris')
+            .bindPopup('Sportify Siège')
             .openPopup();
     </script>
 </body>
