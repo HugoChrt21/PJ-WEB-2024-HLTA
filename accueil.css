@@ -122,8 +122,8 @@ img {
 
 #carrousel {
   position: relative;
-  height: 400px;
-  width: 700px;
+  height: 500px;
+  width: 800px;
   margin: auto;
   overflow: hidden;
 }
@@ -141,7 +141,7 @@ img {
 }
 
 #carrousel-container {
-  width: 700px;
+  width: 800px;
   margin: auto;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
 }
@@ -176,7 +176,7 @@ img {
 }
 
 .pied-de-page {
-  width: 1700px;
+  width: 1550px;
   background: #333333;
   color: #fff;
   padding: 1rem 0;
