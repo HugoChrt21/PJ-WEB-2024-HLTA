@@ -176,8 +176,8 @@ img {
 }
 
 .pied-de-page {
-  width: 100%;
-  background: #333;
+  width: 1700px;
+  background: #333333;
   color: #fff;
   padding: 1rem 0;
   text-align: center;
@@ -200,4 +200,18 @@ img {
 
 .pied-de-page ul li i {
   margin-right: 0.5rem;
+}
+#map {
+  height: 400px;
+  width: 1500px;
+}
+
+.title {
+  color: white;
+  background-color: #333;
+  text-align: center;
+  padding: 10px; /* Pour ajouter un peu d'espace autour du texte */
+  margin: 0; /* Pour supprimer les marges par défaut */
+  width: 100%; /* Pour étendre la bande sur toute la largeur */
+  box-sizing: border-box; /* Pour inclure le padding dans la largeur */
 }
