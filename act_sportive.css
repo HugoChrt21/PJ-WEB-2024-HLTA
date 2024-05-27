@@ -5,10 +5,14 @@
 }
 
 body {
+  height: 100vh;
   font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
+  height: 10%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,15 +32,17 @@ header .logo img {
 }
 
 nav {
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #333;
-  padding: 20px 0;
 }
 
 nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  position: relative;
 }
 
 nav ul li {
@@ -61,11 +67,10 @@ nav ul li a.active {
   padding: 5px 10px;
 }
 
-/* Menu déroulant */
 nav ul li ul.dropdown {
   display: none;
   position: absolute;
-  top: 100%; /* Positionnement sous le parent li */
+  top: 100%;
   left: 0;
   background-color: #333;
   padding: 10px 0;
@@ -89,5 +94,11 @@ nav ul li ul.dropdown li a {
 }
 
 nav ul li ul.dropdown li a:hover {
-  text-decoration: underline; /* Ajouter soulignement au survol */
+  text-decoration: underline;
+}
+
+.wrapper {
+  height: 80%;
+  overflow-y: scroll;
+  padding: 20px;
 }
