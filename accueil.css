@@ -2,25 +2,56 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background-color: #f4f4f4;
+}
+
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 header {
-    background: #333;
-    color: #fff;
-    padding: 1rem 0;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5rem;
+header .slogan h1 {
+    font-size: 24px;
+    color: #333;
 }
 
-header p {
-    font-size: 1.2rem;
-    margin: 0.5rem 0 0;
+
+header .logo img {
+    height: 50px;
+}
+
+nav {
+    background-color: #333;
+    padding: 20px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 30px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 19px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
 }
 
 .carousel {
