@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
-    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="accueil.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -46,13 +46,13 @@
             <div id="carrousel">
                 <ul class="slides">
                     <li>
-                        <img src="foot.jpg" alt="Foot" width="700" height="400">
+                        <img src="foot.jpg" alt="Foot" width="800" height="500">
                     </li>
                     <li>
-                        <img src="basket.jpeg" alt="Basket" width="700" height="400">
+                        <img src="basket.jpeg" alt="Basket" width="800" height="500">
                     </li>
                     <li>
-                        <img src="MMA.jpg" alt="MMA" width="700" height="400">
+                        <img src="MMA.jpg" alt="MMA" width="800" height="500">
                     </li>
                 </ul>
                 <div class="controls">
