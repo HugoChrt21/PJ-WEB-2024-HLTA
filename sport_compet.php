@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votre Page Web</title>
-    <link rel="stylesheet" href="sport_compet.css">
+    <link rel="stylesheet" href="act_sportive.css">
 </head>
 
 <body>
@@ -34,182 +34,55 @@
         </ul>
     </nav>
     <div class="wrapper">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
+        <div class="sports">
+            <div id="sport">
+                <img src="./img/sport_compet/basketball.jpeg" alt="">
+                <div class="texte">
+                    <p>Basketball</p>
+                </div>
+            </div>
+            <div id="sport">
+                <div class="texte">
+                    <p>Football</p>
+                </div>
+                <img src="./img/sport_compet/football.jpeg" alt="">
+            </div>
+            <div id="sport">
+                <img src="./img/sport_compet/natation.jpeg" alt="">
+                <div class="texte">
+                    <p>Rugby</p>
+                </div>
+            </div>
+            <div id="sport">
+                <div class="texte">
+                    <p>Tennis</p>
+                </div>
+                <img src="./img/sport_compet/plongeon.jpeg" alt="">
+            </div>
+            <div id="sport">
+                <img src="./img/sport_compet/rugby.jpeg" alt="">
+                <div class="texte">
+                    <p>Natation</p>
+                </div>
+            </div>
+            <div id="sport">
+                <div class="texte">
+                    <p>Plongeon</p>
+                </div>
+                <img src="./img/sport_compet/tennis.jpeg" alt="">
 
-            autem, voluptatum nostrum. Porro dolorum enim labore. Eligendi facilis ab non architecto, soluta aliquam
-            ibero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            e vitae aspernatur nulla quod a veritatis? Reprehenderit corporis
-            eligendi a sequi mollitia. Debitis aliquid distinctio perspiciatis eum, et dolor? Consequuntur dolore
-            temporibus voluptatem autem, aperiam impedit nobis quibusdam et culpa iste labore nemo placeat laudantium
-            tempora vitae eos assumenda blanditiis reiciendis ad? At facere laborum quod nihil odio corporis laudantium
-            veritatis, voluptates accusamus? A quo sequi mollitia voluptatibus accusamus officiis consectetur deserunt,
-            ullam autem quae? Quaerat quae quisquam, consequuntur facere eligendi soluta earum iste amet perferendis ab
-            aliquid blanditiis vel nihil hic, quia dolore voluptatibus natus corrupti porro. Error placeat eum,
-            dignissimos magnam aperiam tempore libero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-
-            autem, voluptatum nostrum. Porro dolorum enim labore. Eligendi facilis ab non architecto, soluta aliquam
-            ibero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            e vitae aspernatur nulla quod a veritatis? Reprehenderit corporis
-            eligendi a sequi mollitia. Debitis aliquid distinctio perspiciatis eum, et dolor? Consequuntur dolore
-            temporibus voluptatem autem, aperiam impedit nobis quibusdam et culpa iste labore nemo placeat laudantium
-            tempora vitae eos assumenda blanditiis reiciendis ad? At facere laborum quod nihil odio corporis laudantium
-            veritatis, voluptates accusamus? A quo sequi mollitia voluptatibus accusamus officiis consectetur deserunt,
-            ullam autem quae? Quaerat quae quisquam, consequuntur facere eligendi soluta earum iste amet perferendis ab
-            aliquid blanditiis vel nihil hic, quia dolore voluptatibus natus corrupti porro. Error placeat eum,
-            dignissimos magnam aperiam tempore libero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-
-            autem, voluptatum nostrum. Porro dolorum enim labore. Eligendi facilis ab non architecto, soluta aliquam
-            ibero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            e vitae aspernatur nulla quod a veritatis? Reprehenderit corporis
-            eligendi a sequi mollitia. Debitis aliquid distinctio perspiciatis eum, et dolor? Consequuntur dolore
-            temporibus voluptatem autem, aperiam impedit nobis quibusdam et culpa iste labore nemo placeat laudantium
-            tempora vitae eos assumenda blanditiis reiciendis ad? At facere laborum quod nihil odio corporis laudantium
-            veritatis, voluptates accusamus? A quo sequi mollitia voluptatibus accusamus officiis consectetur deserunt,
-            ullam autem quae? Quaerat quae quisquam, consequuntur facere eligendi soluta earum iste amet perferendis ab
-            aliquid blanditiis vel nihil hic, quia dolore voluptatibus natus corrupti porro. Error placeat eum,
-            dignissimos magnam aperiam tempore libero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-
-            autem, voluptatum nostrum. Porro dolorum enim labore. Eligendi facilis ab non architecto, soluta aliquam
-            ibero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            e vitae aspernatur nulla quod a veritatis? Reprehenderit corporis
-            eligendi a sequi mollitia. Debitis aliquid distinctio perspiciatis eum, et dolor? Consequuntur dolore
-            temporibus voluptatem autem, aperiam impedit nobis quibusdam et culpa iste labore nemo placeat laudantium
-            tempora vitae eos assumenda blanditiis reiciendis ad? At facere laborum quod nihil odio corporis laudantium
-            veritatis, voluptates accusamus? A quo sequi mollitia voluptatibus accusamus officiis consectetur deserunt,
-            ullam autem quae? Quaerat quae quisquam, consequuntur facere eligendi soluta earum iste amet perferendis ab
-            aliquid blanditiis vel nihil hic, quia dolore voluptatibus natus corrupti porro. Error placeat eum,
-            dignissimosLorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-
-            autem, voluptatum nostrum. Porro dolorum enim labore. Eligendi facilis ab non architecto, soluta aliquam
-            ibero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            e vitae aspernatur nulla quod a veritatis? Reprehenderit corporis
-            eligendi a sequi mollitia. Debitis aliquid distinctio perspiciatis eum, et dolor? Consequuntur dolore
-            temporibus voluptatem autem, aperiam impedit nobis quibusdam et culpa iste labore nemo placeat laudantium
-            tempora vitae eos assumenda blanditiis reiciendis ad? At facere laborum quod nihil odio corporis laudantium
-            veritatis, voluptates accusamus? A quo sequi mollitia voluptatibus accusamus officiis consectetur deserunt,
-            ullam autem quae? Quaerat quae quisquam, consequuntur facere eligendi soluta earum iste amet perferendis ab
-            aliquid blanditiis vel nihil hic, quia dolore voluptatibus natus corrupti porro. Error placeat eum,
-            dignissimos magnam aperiam tempore libero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-
-            autem, voluptatum nostrum. Porro dolorum enim labore. Eligendi facilis ab non architecto, soluta aliquam
-            ibero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            e vitae aspernatur nulla quod a veritatis? Reprehenderit corporis
-            eligendi a sequi mollitia. Debitis aliquid distinctio perspiciatis eum, et dolor? Consequuntur dolore
-            temporibus voluptatem autem, aperiam impedit nobis quibusdam et culpa iste labore nemo placeat laudantium
-            tempora vitae eos assumenda blanditiis reiciendis ad? At facere laborum quod nihil odio corporis laudantium
-            veritatis, voluptates accusamus? A quo sequi mollitia voluptatibus accusamus officiis consectetur deserunt,
-            ullam autem quae? Quaerat quae quisquam, consequuntur facere eligendi soluta earum iste amet perferendis ab
-            aliquid blanditiis vel nihil hic, quia dolore voluptatibus natus corrupti porro. Error placeat eum,
-            dignissimos magnam aperiam tempore libero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-
-            autem, voluptatum nostrum. Porro dolorum enim labore. Eligendi facilis ab non architecto, soluta aliquam
-            ibero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            e vitae aspernatur nulla quod a veritatis? Reprehenderit corporis
-            eligendi a sequi mollitia. Debitis aliquid distinctio perspiciatis eum, et dolor? Consequuntur dolore
-            temporibus voluptatem autem, aperiam impedit nobis quibusdam et culpa iste labore nemo placeat laudantium
-            tempora vitae eos assumenda blanditiis reiciendis ad? At facere laborum quod nihil odio corporis laudantium
-            veritatis, voluptates accusamus? A quo sequi mollitia voluptatibus accusamus officiis consectetur deserunt,
-            ullam autem quae? Quaerat quae quisquam, consequuntur facere eligendi soluta earum iste amet perferendis ab
-            aliquid blanditiis vel nihil hic, quia dolore voluptatibus natus corrupti porro. Error placeat eum,
-            dignissimos magnam aperiam tempore libero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-
-            autem, voluptatum nostrum. Porro dolorum enim labore. Eligendi facilis ab non architecto, soluta aliquam
-            ibero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, molestiae. Voluptates fugiat
-            consequatur
-            et necessitatibus eaque ab esse enim? Nostrum, nemo. Eius in eveniet qui reprehenderit quae inventore nulla
-            iste enim amet debitis et atque, laborum ab officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            officiis animi ullam ad molestiae perferendis sed ipsa. Facilis
-            e vitae aspernatur nulla quod a veritatis? Reprehenderit corporis
-            eligendi a sequi mollitia. Debitis aliquid distinctio perspiciatis eum, et dolor? Consequuntur dolore
-            temporibus voluptatem autem, aperiam impedit nobis quibusdam et culpa iste labore nemo placeat laudantium
-            tempora vitae eos assumenda blanditiis reiciendis ad? At facere laborum quod nihil odio corporis laudantium
-            veritatis, voluptates accusamus? A quo sequi mollitia voluptatibus accusamus officiis consectetur deserunt,
-            ullam autem quae? Quaerat quae quisquam, consequuntur facere eligendi soluta earum iste amet perferendis ab
-            aliquid blanditiis vel nihil hic, quia dolore voluptatibus natus corrupti porro. Error placeat eum,
-            dignissimos magnam aperiam tempore libero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium. magnam aperiam tempore libero similique qui, at ducimus quaerat, officia perferendis. Nulla quos
-            magni dolorem, quia eveniet voluptatibus placeat at unde sit, dicta eos distinctio? Hic, doloribus
-            laudantium.</p>
+            </div>
+        </div>
+        <footer class="pied-de-page">
+            <div class="conteneur">
+                <p>Contactez-nous :</p>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> Email : contact@sportify.com</li>
+                    <li><i class="fas fa-phone"></i> Téléphone : +33 1 23 45 67 89</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Adresse : 123 Rue de Sport, Paris, France</li>
+                </ul>
+            </div>
+        </footer>
     </div>
 </body>
 
