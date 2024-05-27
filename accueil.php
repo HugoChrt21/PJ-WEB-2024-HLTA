@@ -37,7 +37,8 @@
     </nav>
     <div class="wrapper">
         <h2>EVENEMENT DE LA SEMAINE</h2>
-        <img src="evenement-de-la-semaine.jpg" alt="Événement de la semaine">
+        <img src="evenement-de-la-semaine.jpg" alt="Événement de la semaine" style="max-width: 70%; height: auto; margin-bottom: 40px;">
+
 
         <h2>NOS SPECIALITE SPORTIVES</h2>
 
