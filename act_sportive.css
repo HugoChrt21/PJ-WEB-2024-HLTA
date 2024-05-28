@@ -100,7 +100,7 @@ nav ul li ul.dropdown li a:hover {
 .wrapper {
   height: 80%;
   overflow-y: scroll;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .sports {

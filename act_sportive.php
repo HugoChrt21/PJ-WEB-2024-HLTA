@@ -14,7 +14,7 @@
             <h1>Sportify: Consultation Sportive</h1>
         </div>
         <div class="logo">
-            <img src="./img/act_sportive/logo.png" alt="Logo">
+            <img src="./image/act_sportive/logo.png" alt="Logo">
         </div>
     </header>
     <nav>
@@ -36,7 +36,7 @@
     <div class="wrapper">
         <div class="sports">
             <div id="sport" class="musculation">
-                <img src="./img/act_sportive/musculation.jpeg" alt="">
+                <img src="./image/act_sportive/musculation.jpeg" alt="">
                 <div class="texte">
                     <p>Musculation</p>
                 </div>
@@ -45,10 +45,10 @@
                 <div class="texte">
                     <p>Fitness</p>
                 </div>
-                <img src="./img/act_sportive/fitness.jpeg" alt="">
+                <img src="./image/act_sportive/fitness.jpeg" alt="">
             </div>
             <div id="sport" class="biking">
-                <img src="./img/act_sportive/biking.jpeg" alt="">
+                <img src="./image/act_sportive/biking.jpeg" alt="">
                 <div class="texte">
                     <p>Biking</p>
                 </div>
@@ -57,10 +57,10 @@
                 <div class="texte">
                     <p>Cardio-Training</p>
                 </div>
-                <img src="./img/act_sportive/cardio.jpeg" alt="">
+                <img src="./image/act_sportive/cardio.jpeg" alt="">
             </div>
             <div id="sport" class="cours_collectifs">
-                <img src="./img/act_sportive/cours_coll.jpeg" alt="">
+                <img src="./image/act_sportive/cours_coll.jpeg" alt="">
                 <div class="texte">
                     <p>Cours Collectifs</p>
                 </div>
