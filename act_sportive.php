@@ -14,7 +14,7 @@
             <h1>Sportify: Consultation Sportive</h1>
         </div>
         <div class="logo">
-            <img src="./image/act_sportive/logo.png" alt="Logo">
+            <img src="./image/act_sportive/logo_sportify.png" alt="Logo">
         </div>
     </header>
     <nav>

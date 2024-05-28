@@ -14,7 +14,7 @@
             <h1>Sportify: Consultation Sportive</h1>
         </div>
         <div class="logo">
-            <img src="./img/act_sportive/logo.png" alt="Logo">
+            <img src="./image/act_sportive/logo_sportify.png" alt="Logo">
         </div>
     </header>
     <nav>
@@ -48,7 +48,7 @@
                 <img src="./image/sport_compet/football.jpeg" alt="">
             </div>
             <div id="sport">
-                <img src="./image/sport_compet/natation.jpeg" alt="">
+                <img src="./image/sport_compet/rugby.jpeg" alt="">
                 <div class="texte">
                     <p>Rugby</p>
                 </div>
@@ -57,10 +57,10 @@
                 <div class="texte">
                     <p>Tennis</p>
                 </div>
-                <img src="./image/sport_compet/plongeon.jpeg" alt="">
+                <img src="./image/sport_compet/tennis.jpeg" alt="">
             </div>
             <div id="sport">
-                <img src="./image/sport_compet/rugby.jpeg" alt="">
+                <img src="./image/sport_compet/natation.jpeg" alt="">
                 <div class="texte">
                     <p>Natation</p>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="texte">
                     <p>Plongeon</p>
                 </div>
-                <img src="./image/sport_compet/tennis.jpeg" alt="">
+                <img src="./image/sport_compet/plongeon.jpeg" alt="">
 
             </div>
         </div>
