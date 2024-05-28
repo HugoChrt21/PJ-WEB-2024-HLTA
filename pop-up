@@ -246,3 +246,160 @@ function toggleContent(id) {
         content.style.maxHeight = content.scrollHeight + "px";
     }
 }
+
+
+CSS:
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  background-color: #f0f0f0; 
+}
+
+.container {
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.text-with-arrow {
+  display: inline-flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0; 
+  cursor: pointer;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  margin-left: 8px; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black; 
+}
+
+.hidden-content {
+  display: none; 
+  margin-top: 10px; 
+  font-size: 16px;
+  max-width: 600px; 
+}
+
+/**/
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    color: #333;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.slogan h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.logo img {
+    height: 50px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover,
+.active {
+    background-color: #ddd;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+nav ul li:hover .dropdown {
+    display: block;
+}
+
+.dropdown li {
+    width: 200px;
+}
+
+.dropdown li a {
+    padding: 10px 20px;
+}
+
+
+.texte h3 button {
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: left;
+    padding: 10px 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color 0.3s;
+}
+
+
+
+.content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+    background-color: #fff;
+    padding: 0 10px;
+    margin-top: 10px;
+    border-left: 4px solid #333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+
+
