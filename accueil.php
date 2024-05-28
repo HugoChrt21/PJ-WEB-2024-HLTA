@@ -16,7 +16,7 @@
             <h1>Sportify: Consultation Sportive</h1>
         </div>
         <div class="logo">
-            <img src="logo_sportify.png" alt="Logo">
+            <img src="./image/accueil/logo_sportify.png" alt="Logo">
         </div>
     </header>
     <nav>
@@ -37,7 +37,8 @@
     </nav>
     <div class="wrapper">
         <h2>EVENEMENT DE LA SEMAINE</h2>
-        <img src="evenement-de-la-semaine.jpg" alt="Événement de la semaine" style="max-width: 70%; height: auto; margin-bottom: 40px;">
+        <img src="./image/accueil/evenement-de-la-semaine.jpg" alt="Événement de la semaine"
+            style="max-width: 70%; height: auto; margin-bottom: 40px;">
 
 
         <h2>NOS SPECIALITE SPORTIVES</h2>
@@ -46,13 +47,13 @@
             <div id="carrousel">
                 <ul class="slides">
                     <li>
-                        <img src="foot.jpg" alt="Foot" width="800" height="500">
+                        <img src="./image/accueil/foot.jpg" alt="Foot" width="800" height="500">
                     </li>
                     <li>
-                        <img src="basket.jpeg" alt="Basket" width="800" height="500">
+                        <img src="./image/accueil/basket.jpeg" alt="Basket" width="800" height="500">
                     </li>
                     <li>
-                        <img src="MMA.jpg" alt="MMA" width="800" height="500">
+                        <img src="./image/accueil/MMA.jpg" alt="MMA" width="800" height="500">
                     </li>
                 </ul>
                 <div class="controls">
@@ -77,10 +78,10 @@
         </footer>
         <div class="content">
             <div id="map"></div>
-          </div>
+        </div>
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
         <script src="accueil.js"></script>
-        
+
     </div>
 </body>
 
