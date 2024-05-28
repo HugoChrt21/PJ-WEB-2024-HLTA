@@ -117,8 +117,8 @@ nav ul li ul.dropdown li a:hover {
   width: 80%;
   height: 300px;
   margin: 30px;
-  display: flex; /* Ajoutez cette ligne pour utiliser Flexbox */
-  align-items: center; /* Centrer les éléments verticalement */
+  display: flex;  
+  align-items: center;  
   padding: 10px;
   border-radius: 30px;
 }
@@ -137,7 +137,7 @@ nav ul li ul.dropdown li a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px; /* Ajoutez cette ligne pour définir l'espace entre le texte et le bouton */
+  margin-bottom: 20px;  
 }
 
 .nom_salle {
@@ -147,7 +147,7 @@ nav ul li ul.dropdown li a:hover {
     -2px 3px #808d93, -3px 2px #cdd2d5, -3px 4px #808d93, -4px 3px #cdd2d5,
     -4px 5px #808d93, -5px 4px #cdd2d5, -5px 6px #808d93, -6px 5px #cdd2d5,
     -6px 7px #808d93, -7px 6px #cdd2d5, -7px 8px #808d93, -8px 7px #cdd2d5;
-  font-size: 80px; /* Ajustez la taille du texte selon vos besoins */
+  font-size: 80px;  
   margin-bottom: 40px;
 }
 
@@ -181,25 +181,25 @@ nav ul li ul.dropdown li a:hover {
 }
 
 .boutton {
-  background-color: #4caf50; /* Couleur de fond verte */
-  color: white; /* Couleur du texte blanche */
-  padding: 10px 20px; /* Espacement interne */
-  border-radius: 5px; /* Coins arrondis */
-  text-align: center; /* Centrer le texte */
-  cursor: pointer; /* Curseur pointeur */
-  font-size: 16px; /* Taille de police */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombre portée */
-  transition: background-color 0.3s, transform 0.3s; /* Transition pour l'effet */
+  background-color: #4caf50;  
+  color: white;  
+  padding: 10px 20px;  
+  border-radius: 5px; 
+  text-align: center; 
+  cursor: pointer;  
+  font-size: 16px;  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);  
+  transition: background-color 0.3s, transform 0.3s;  
 }
 
 .boutton:hover {
-  background-color: #45a049; /* Couleur de fond plus foncée au survol */
-  transform: scale(1.05); /* Effet d'agrandissement au survol */
+  background-color: #45a049;  
+  transform: scale(1.05);  
 }
 
 .boutton:active {
-  background-color: #3e8e41; /* Couleur de fond plus foncée lors du clic */
-  transform: scale(1); /* Retrait de l'effet d'agrandissement lors du clic */
+  background-color: #3e8e41;  
+  transform: scale(1);  
 }
 
 .overlay {
@@ -216,13 +216,13 @@ nav ul li ul.dropdown li a:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   overflow-y: auto;
   padding: 20px;
-  /* z-index: 19; */
+   
 }
 
 .close-button {
   position: absolute;
-  top: 0px; /* Adjust the value as needed */
-  left: 0px; /* Adjust the value as needed */
+  top: 0px;  
+  left: 0px;  
   font-size: 24px;
   cursor: pointer;
 }
