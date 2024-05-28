@@ -1,4 +1,4 @@
-/* Votre fichier CSS existant */
+ 
 
 * {
   margin: 0;
@@ -100,17 +100,17 @@ nav ul li ul.dropdown li a:hover {
 }
 
 .wrapper {
-  flex: 1; /* Prend tout l'espace disponible */
-  overflow-y: auto; /* Permet le défilement vertical */
-  /* padding: 20px;   c'est sa qui fait l'écart dans le footer*/
+  flex: 1;  
+  overflow-y: auto;  
+   
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centre le contenu horizontalement */
+  align-items: center;  
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 20px; /* Espace supplémentaire sous le titre */
+  margin-bottom: 20px;  
 }
 
 img {
@@ -210,8 +210,8 @@ img {
   color: white;
   background-color: #333;
   text-align: center;
-  padding: 10px; /* Pour ajouter un peu d'espace autour du texte */
-  margin: 0; /* Pour supprimer les marges par défaut */
-  width: 100%; /* Pour étendre la bande sur toute la largeur */
-  box-sizing: border-box; /* Pour inclure le padding dans la largeur */
+  padding: 10px;  
+  margin: 0;  
+  width: 100%;  
+  box-sizing: border-box; 
 }
