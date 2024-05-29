@@ -1,20 +1,32 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+session_start(); // Commencez la session
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Votre Page Web</title>
+    <title>Connexion</title>
     <link rel="stylesheet" href="connexion.css">
 </head>
 
 <?php
-$user = "root";
-$psd = "root";
-$db = "mysql:host=localhost;dbname=Sportify";
+
+// Informations de connexion à la base de données
+$serveur = "localhost:3307";
+$utilisateur = "root";
+$mot_de_passe = "123";
+$base_de_donnees = "Sportify";
 
 try {
-    $cx = new PDO($db, $user, $psd);
+    // Connexion à la base de données
+    $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     $error_message = "Une erreur est survenue lors de la connexion : " . $e->getMessage();
@@ -23,7 +35,6 @@ try {
 }
 
 $error_message = '';
-$success_message = '';
 $welcome_message = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
@@ -40,7 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
         // Vérifiez si l'utilisateur a été trouvé dans la base de données
         if ($user) {
             $welcome_message = "Bienvenue !";
-            // Ici, vous pouvez ajouter du code pour démarrer une session, etc.
+            // Stockez l'adresse e-mail de l'utilisateur dans la session
+            $_SESSION['email'] = $email;
+            // Redirigez l'utilisateur vers la page compte.php
+            header("Location: compte.php");
+            exit(); // Assurez-vous que le script s'arrête après la redirection
         } else {
             $error_message = "Email ou mot de passe incorrect.";
         }
@@ -91,9 +106,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             </form>
             <?php if ($error_message) {
                 echo "<p style='color: red;'>$error_message</p>";
-            } ?>
-            <?php if ($success_message) {
-                echo "<p style='color: green;'>$success_message</p>";
             } ?>
             <?php if ($welcome_message) {
                 echo "<p style='color: green;'>$welcome_message</p>";
