@@ -102,20 +102,20 @@ try {
                 foreach ($result as $k => $v) {
                     echo "
                         <div class=\"coach-card\">
-            <img src=\"./image/coach/" . $v["photo"] . "\" alt=\"Photo de Coach\" class=\"coach-photo\">
-            <div class=\"coach-info\">
-                <h2>" . $v["prenom"] . " " . $v["non"] . "</h2>
-                <p>Téléphone : " . $v["numero_telephone"] . "</p>
-                <p>Bureau : " . $v["bureau"] . "</p>
-                <p>Email : " . $v["mail"] . "</p>
-                <div class=\"coach-buttons\">
-                    <button class=\"btn\">Prendre RDV</button>
-                    <button class=\"btn\">Communiquer avec le coach</button>
-                    <button class=\"btn\">Voir son CV</button>
-                </div>
-            </div>
-        </div>                     
-                        ";
+                            <img src=\"./image/coach/" . $v["photo"] . "\" alt=\"Photo de Coach\" class=\"coach-photo\">
+                            <div class=\"coach-info\">
+                                <h2>" . $v["prenom"] . " " . $v["nom"] . "</h2>
+                                <p>Téléphone : " . $v["numero_telephone"] . "</p>
+                                <p>Bureau : " . $v["bureau"] . "</p>
+                                <p>Email : " . $v["mail"] . "</p>
+                                <div class=\"coach-buttons\">
+                                    <a href=\"edt.php?id_coach=" . $v["ID"] . "\" class=\"btn\">Prendre RDV</a>
+                                    <a class=\"btn\">Communiquer avec le coach</a>
+                                    <a class=\"btn\">Voir son CV</a>
+                                </div>
+                            </div>
+                        </div>                     
+                    ";
                 }
             } catch (PDOException $e) {
                 echo "Erreur : " . $e->getMessage() . "</br>";

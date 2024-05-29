@@ -75,6 +75,7 @@ nav ul li ul.dropdown {
   background-color: #333;
   padding: 10px 0;
   list-style: none;
+  z-index: 10;
 }
 
 nav ul li:hover ul.dropdown {
@@ -102,9 +103,96 @@ nav ul li ul.dropdown li a:hover {
   overflow-y: scroll;
 }
 
-.titre {
+.container {
+  margin: auto;
+  margin-top: 20px;
+  width: 80%;
+  max-width: 1200px;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+#user-info {
   text-align: center;
-  padding: 30px;
+  margin-bottom: 10px;
+}
+
+#user-info p {
+  margin: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ccc;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+td {
+  height: 50px;
+  cursor: pointer;
+}
+
+th,
+td {
+  width: 16.66%;
+}
+
+th:first-child,
+td:first-child {
+  width: 10%;
+}
+
+.occupied {
+  background-color: black;
+}
+
+.free {
+  background-color: white;
+}
+
+.free:hover {
+  background-color: #45a049;
+}
+
+.free.selected {
+  background-color: green;
+}
+
+#confirm-btn {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#confirm-btn.visible {
+  display: block;
 }
 
 .pied-de-page {
@@ -112,6 +200,7 @@ nav ul li ul.dropdown li a:hover {
   color: #fff;
   padding: 1rem 0;
   text-align: center;
+  margin-top: 2rem;
 }
 
 .pied-de-page p {
@@ -130,70 +219,4 @@ nav ul li ul.dropdown li a:hover {
 
 .pied-de-page ul li i {
   margin-right: 0.5rem;
-}
-
-.titre {
-  display: block;
-}
-
-.coachs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.coach-card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  padding: 20px;
-  text-align: center;
-}
-
-.coach-photo {
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-bottom: 15px;
-}
-
-.coach-info h2 {
-  font-size: 24px;
-  margin: 10px 0;
-}
-
-.coach-info p {
-  font-size: 14px;
-  color: #555;
-  margin: 5px 0;
-}
-
-.coach-buttons {
-  margin-top: 15px;
-}
-
-.coach-buttons .btn,
-.coach-buttons .btn-link {
-  background-color: #45a049;
-  border: none;
-  color: white;
-  padding: 10px 15px;
-  margin: 5px 0;
-  cursor: pointer;
-  border-radius: 5px;
-  width: 100%;
-  font-size: 14px;
-  text-align: center;
-  display: inline-block;
-  text-decoration: none;
-}
-
-.coach-buttons .btn:hover,
-.coach-buttons .btn-link:hover {
-  background-color: darkgreen;
 }
