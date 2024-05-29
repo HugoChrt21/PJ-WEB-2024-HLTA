@@ -14,11 +14,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $specialite = $_POST['coachSpecialite'];
     $bureau = $_POST['coachBureau'];
     $telephone = $_POST['coachTelephone'];
+    $mdp = $_POST['coachMDP'];
 
     // Vérifier si les répertoires de destination existent, sinon, les créer
-    $uploadDir = 'uploads/';
-    $photoDir = $uploadDir . 'photos/';
-    $cvDir = $uploadDir . 'cv/';
+    $uploadDir = 'image/coach/';
+    $photoDir = $uploadDir . 'photo/';
+    $cvDir = $uploadDir . 'CV/';
 
     if (!file_exists($photoDir)) {
         mkdir($photoDir, 0777, true);
@@ -28,11 +29,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         mkdir($cvDir, 0777, true);
     }
 
+    // Renommer les fichiers photo et CV
+    $photoFileName = $prenom . '_' . $nom . '.jpg';
+    $cvFileName = 'CV' . $prenom . '_' . $nom . '.jpg';
+
     // Vérifier si un fichier photo a été téléchargé
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
-        $photoName = $_FILES['photo']['name'];
         $photoTempName = $_FILES['photo']['tmp_name'];
-        $photoPath = $photoDir . $photoName;
+        $photoPath = $photoDir . $photoFileName;
 
         if (!move_uploaded_file($photoTempName, $photoPath)) {
             echo "Erreur lors du téléchargement de la photo.";
@@ -44,11 +48,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
-    // Vérifier si un fichier CV a été téléchargé
+    // Vérifier si un fichier CV (JPG) a été téléchargé
     if (isset($_FILES['cv']) && $_FILES['cv']['error'] === UPLOAD_ERR_OK) {
-        $cvName = $_FILES['cv']['name'];
+        $cvExtension = pathinfo($_FILES['cv']['name'], PATHINFO_EXTENSION);
+        if (strtolower($cvExtension) !== 'jpg' && strtolower($cvExtension) !== 'jpeg') {
+            echo "Veuillez sélectionner un fichier JPG pour le CV.";
+            exit();
+        }
+
         $cvTempName = $_FILES['cv']['tmp_name'];
-        $cvPath = $cvDir . $cvName;
+        $cvPath = $cvDir . $cvFileName;
 
         if (!move_uploaded_file($cvTempName, $cvPath)) {
             echo "Erreur lors du téléchargement du CV.";
@@ -70,39 +79,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
         $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Insérer le coach dans la base de données
-        $stmt = $cx->prepare("INSERT INTO coach (Mail, nom, prenom, specialite, bureau, numero_telephone, photo, cv) VALUES (:email, :nom, :prenom, :specialite, :bureau, :telephone, :photo, :cv)");
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':nom', $nom);
-        $stmt->bindParam(':prenom', $prenom);
-        $stmt->bindParam(':specialite', $specialite);
-        $stmt->bindParam(':bureau', $bureau);
-        $stmt->bindParam(':telephone', $telephone);
-        $stmt->bindParam(':photo', $photoPath);
-        $stmt->bindParam(':cv', $cvPath);
-        $stmt->execute();
-
-        header("Location: compte.php?success=Coach ajouté avec succès");
-        exit();
     } catch (PDOException $e) {
         echo "Une erreur est survenue : " . $e->getMessage();
     }
+    // Insérer le coach dans la base de données
+    $stmt = $cx->prepare("INSERT INTO coach (Mail, nom, prenom, specialite, bureau, numero_telephone, photo, cv) VALUES (:email, :nom, :prenom, :specialite, :bureau, :telephone, :photo, :cv)");
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':nom', $nom);
+    $stmt->bindParam(':prenom', $prenom);
+    $stmt->bindParam(':specialite', $specialite);
+    $stmt->bindParam(':bureau', $bureau);
+    $stmt->bindParam(':telephone', $telephone);
+    $stmt->bindParam(':photo', $photoPath);
+    $stmt->bindParam(':cv', $cvPath);
+    $stmt->execute();
+
+
+    $sql = "INSERT INTO connexion (mail, MDP, type)
+                VALUES (:email, :password, 'coach')";
+
+        try {
+            $stmt = $cx->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $coachMDP);
+
+            $stmt->execute();
+            header("Location: compte.php?success=Coach ajouté avec succès");
+            exit(); // Assurez-vous que le script s'arrête après la redirection
+        } catch (PDOException $e) {
+            $error_message = "Une erreur est survenue lors de la création du compte : " . $e->getMessage();
+        }
+            
+    
 }
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un coach</title>
     <link rel="stylesheet" href="compte.css">
 </head>
-
 <body>
     <header>
         <div class="slogan">
@@ -123,6 +142,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="text" id="coachNom" name="coachNom" required>
                 <label for="coachPrenom">Prénom :</label>
                 <input type="text" id="coachPrenom" name="coachPrenom" required>
+                <label for="">MDP :</label>
+                <input type="text" id="coachMDP" name="coachMDP" required>
                 <label for="coachSpecialite">Spécialité :</label>
                 <input type="text" id="coachSpecialite" name="coachSpecialite" required>
                 <label for="coachBureau">Bureau :</label>
@@ -130,9 +151,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label for="coachTelephone">Téléphone :</label>
                 <input type="text" id="coachTelephone" name="coachTelephone" required>
                 <label for="photo">Photo :</label>
-                <input type="file" id="photo" name="photo" accept="image/*" required>
-                <label for="cv">CV (PDF) :</label>
-                <input type="file" id="cv" name="cv" accept=".pdf" required>
+                <div class="drop-container" id="photoDropContainer">
+                    <span class="drop-title">Déposez la photo ici</span>
+                    ou
+                    <input type="file" id="photo" name="photo" accept="image/*" required>
+                </div>
+                <label for="cv">CV (JPG) :</label>
+                <div class="drop-container" id="cvDropContainer">
+                    <span class="drop-title">Déposez le CV ici</span>
+                    ou
+                    <input type="file" id="cv" name="cv" accept=".jpg,.jpeg" required>
+                </div>
                 <button type="submit" class="button">Ajouter</button>
             </form>
         </div>
@@ -148,6 +177,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </ul>
         </div>
     </footer>
+    <script src="script.js"></script>
 </body>
-
 </html>
