@@ -44,7 +44,7 @@ try {
             </li>
             <li><a href="recherche.php">Recherche</a></li>
             <li><a href="#">Rendez-vous</a></li>
-            <li><a href="compte.php">Votre Compte</a></li>
+            <li><a href="connexion.php">Votre Compte</a></li>
         </ul>
     </nav>
     <div class="wrapper">
@@ -94,7 +94,7 @@ try {
         <div class="coachs">
             <?php
             try {
-                $sql = "SELECT * FROM Coach WHERE Spécialité = :sport";
+                $sql = "SELECT * FROM Coach WHERE specialite = :sport";
                 $sth = $cx->prepare($sql);
                 $sth->bindParam(':sport', $sport, PDO::PARAM_STR);
                 $sth->execute();
@@ -102,21 +102,19 @@ try {
                 foreach ($result as $k => $v) {
                     echo "
                         <div class=\"coach-card\">
-            <img src=\"./image/coach/" . $v["Photo"] . "\" alt=\"Photo de Coach\" class=\"coach-photo\">
+            <img src=\"./image/coach/" . $v["photo"] . "\" alt=\"Photo de Coach\" class=\"coach-photo\">
             <div class=\"coach-info\">
-                <h2>" . $v["Prénom"] . " " . $v["Nom"] . "</h2>
-                <p>Téléphone : " . $v["Prénom"] . "</p>
-                <p>Bureau : " . $v["Bureau"] . "</p>
-                <p>Email : " . $v["Mail"] . "</p>
+                <h2>" . $v["prenom"] . " " . $v["non"] . "</h2>
+                <p>Téléphone : " . $v["numero_telephone"] . "</p>
+                <p>Bureau : " . $v["bureau"] . "</p>
+                <p>Email : " . $v["mail"] . "</p>
                 <div class=\"coach-buttons\">
                     <button class=\"btn\">Prendre RDV</button>
                     <button class=\"btn\">Communiquer avec le coach</button>
                     <button class=\"btn\">Voir son CV</button>
                 </div>
             </div>
-        </div>
-
-                        
+        </div>                     
                         ";
                 }
             } catch (PDOException $e) {
