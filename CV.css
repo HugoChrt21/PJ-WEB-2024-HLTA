@@ -75,7 +75,7 @@ nav ul li ul.dropdown {
   background-color: #333;
   padding: 10px 0;
   list-style: none;
-  z-index: 10;
+  z-index: 20;
 }
 
 nav ul li:hover ul.dropdown {
@@ -123,7 +123,7 @@ nav ul li ul.dropdown li a:hover {
 .container {
   margin: auto;
   margin-top: 20px;
-  width: 80%;
+  width: 65%;
   max-width: 1200px;
   background: white;
   padding: 20px;
@@ -131,85 +131,9 @@ nav ul li ul.dropdown li a:hover {
   position: relative;
 }
 
-#user-info {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-#user-info p {
-  margin: 0;
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-table {
+.container img {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-table,
-th,
-td {
-  border: 1px solid #ccc;
-}
-
-th,
-td {
-  padding: 10px;
-  text-align: center;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-td {
-  height: 50px;
-  cursor: pointer;
-}
-
-th,
-td {
-  width: 16.66%;
-}
-
-th:first-child,
-td:first-child {
-  width: 10%;
-}
-
-.occupied {
-  background-color: black;
-}
-
-.free {
-  background-color: white;
-}
-
-.free:hover {
-  background-color: #45a049;
-}
-
-.free.selected {
-  background-color: green;
-}
-
-#confirm-btn {
-  display: none;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  padding: 10px 20px;
-  background-color: green;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#confirm-btn.visible {
-  display: block;
+  object-fit: contain; /* Assure que l'image garde ses proportions */
 }
 
 .pied-de-page {

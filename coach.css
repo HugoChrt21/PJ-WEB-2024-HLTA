@@ -102,6 +102,23 @@ nav ul li ul.dropdown li a:hover {
   overflow-y: scroll;
 }
 
+.btn-retour {
+  position: fixed;
+  top: 22%;
+  left: 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 1000;
+}
+
+.btn-retour:hover {
+  background-color: #555;
+}
+
 .titre {
   text-align: center;
   padding: 30px;

@@ -44,10 +44,11 @@ try {
             </li>
             <li><a href="recherche.php">Recherche</a></li>
             <li><a href="#">Rendez-vous</a></li>
-            <li><a href="connexion.php">Votre Compte</a></li>
+            <li><a href="compte.php">Votre Compte</a></li>
         </ul>
     </nav>
     <div class="wrapper">
+        <button class="btn-retour" onclick="history.back()">Retour</button>
         <?php
         $sport = $_GET["sport"];
         $titre = '';
@@ -102,7 +103,7 @@ try {
                 foreach ($result as $k => $v) {
                     echo "
                         <div class=\"coach-card\">
-                            <img src=\"./image/coach/" . $v["photo"] . "\" alt=\"Photo de Coach\" class=\"coach-photo\">
+                            <img src=\"./image/coach/photo/" . $v["photo"] . "\" alt=\"Photo de Coach\" class=\"coach-photo\">
                             <div class=\"coach-info\">
                                 <h2>" . $v["prenom"] . " " . $v["nom"] . "</h2>
                                 <p>Téléphone : " . $v["numero_telephone"] . "</p>
@@ -111,7 +112,7 @@ try {
                                 <div class=\"coach-buttons\">
                                     <a href=\"edt.php?id_coach=" . $v["ID"] . "\" class=\"btn\">Prendre RDV</a>
                                     <a class=\"btn\">Communiquer avec le coach</a>
-                                    <a class=\"btn\">Voir son CV</a>
+                                    <a href=\"CV.php?id_coach=" . $v["ID"] . "\" class=\"btn\">Voir son CV</a>
                                 </div>
                             </div>
                         </div>                     

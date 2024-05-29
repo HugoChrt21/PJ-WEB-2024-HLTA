@@ -48,6 +48,7 @@ try {
         </ul>
     </nav>
     <div class="wrapper">
+        <button class="btn-retour" onclick="history.back()">Retour</button>
         <div class="container">
             <div id="user-info">
                 <?php

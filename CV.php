@@ -5,11 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votre Page Web</title>
-    <link rel="stylesheet" href="sport_compet.css">
+    <link rel="stylesheet" href="CV.css">
 </head>
 
+<?php
+$user = "root";
+$psd = "root";
+$db = "mysql:host=localhost;dbname=Sportify";
 
-
+try {
+    $cx = new PDO($db, $user, $psd);
+    $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
+    die();
+}
+?>
 
 <body>
     <header>
@@ -37,43 +48,27 @@
         </ul>
     </nav>
     <div class="wrapper">
-        <div class="sports">
-            <a id="sport" href="coach.php?sport=basketball">
-                <img src="./image/sport_compet/basketball.jpeg" alt="">
-                <div class="texte">
-                    <p>Basketball</p>
-                </div>
-            </a>
-            <a id="sport" href="coach.php?sport=football">
-                <div class="texte">
-                    <p>Football</p>
-                </div>
-                <img src="./image/sport_compet/football.jpeg" alt="">
-            </a>
-            <a id="sport" href="coach.php?sport=rugby">
-                <img src="./image/sport_compet/rugby.jpeg" alt="">
-                <div class="texte">
-                    <p>Rugby</p>
-                </div>
-            </a>
-            <a id="sport" href="coach.php?sport=tennis">
-                <div class="texte">
-                    <p>Tennis</p>
-                </div>
-                <img src="./image/sport_compet/tennis.jpeg" alt="">
-            </a>
-            <a id="sport" href="coach.php?sport=natation">
-                <img src="./image/sport_compet/natation.jpeg" alt="">
-                <div class="texte">
-                    <p>Natation</p>
-                </div>
-            </a>
-            <a id="sport" href="coach.php?sport=plongeon">
-                <div class="texte">
-                    <p>Plongeon</p>
-                </div>
-                <img src="./image/sport_compet/plongeon.jpeg" alt="">
-            </a>
+        <button class="btn-retour" onclick="history.back()">Retour</button>
+        <div class="container">
+            <?php
+            $id = $_GET["id_coach"];
+            try {
+                $sql = "SELECT * FROM Coach WHERE ID = :id";
+                $sth = $cx->prepare($sql);
+                $sth->bindParam(':id', $id, PDO::PARAM_STR);
+                $sth->execute();
+                $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($result as $k => $v) {
+                    echo "
+                             <img src=\"./image/coach/CV/" . $v["CV"] . "\">
+                    ";
+
+                }
+            } catch (PDOException $e) {
+                echo "Erreur : " . $e->getMessage() . "</br>";
+                die();
+            }
+            ?>
         </div>
         <footer class="pied-de-page">
             <div class="conteneur">
