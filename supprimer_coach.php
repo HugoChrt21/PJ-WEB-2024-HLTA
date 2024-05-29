@@ -11,27 +11,38 @@ if (!isset($_SESSION['email']) || $_SESSION['type'] != 'admin') {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['coachEmailSupprimer'];
 
-    // Informations de connexion à la base de données
-    $serveur = "localhost:3307";
-    $utilisateur = "root";
-    $mot_de_passe = "123";
-    $base_de_donnees = "Sportify";
+    $user = "root";
+    $psd = "root";
+    $db = "mysql:host=localhost;dbname=Sportify";
 
     try {
-        $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
+        $cx = new PDO($db, $user, $psd);
         $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        // Supprimer le coach de la base de données
-        $stmt = $cx->prepare("DELETE FROM coach WHERE Mail = :email");
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
-
-            header("Location: compte.php?success=Coach supprimé avec succès");
-            exit();
-
     } catch (PDOException $e) {
-        echo "Une erreur est survenue : " . $e->getMessage();
+        echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
+        die();
     }
+
+    // $serveur = "localhost:3307";
+    // $utilisateur = "root";
+    // $mot_de_passe = "123";
+    // $base_de_donnees = "Sportify";
+
+    // try {
+    //     $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
+    //     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    //     // Supprimer le coach de la base de données
+    //     $stmt = $cx->prepare("DELETE FROM coach WHERE Mail = :email");
+    //     $stmt->bindParam(':email', $email);
+    //     $stmt->execute();
+
+    //     header("Location: compte.php?success=Coach supprimé avec succès");
+    //     exit();
+
+    // } catch (PDOException $e) {
+    //     echo "Une erreur est survenue : " . $e->getMessage();
+    // }
 }
 ?>
 <!DOCTYPE html>
