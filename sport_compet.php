@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votre Page Web</title>
-    <link rel="stylesheet" href="act_sportive.css">
+    <link rel="stylesheet" href="sport_compet.css">
 </head>
+
+
+
 
 <body>
     <header>
@@ -35,43 +38,42 @@
     </nav>
     <div class="wrapper">
         <div class="sports">
-            <div id="sport">
+            <a id="sport" href="coach.php?sport=basketball">
                 <img src="./image/sport_compet/basketball.jpeg" alt="">
                 <div class="texte">
                     <p>Basketball</p>
                 </div>
-            </div>
-            <div id="sport">
+            </a>
+            <a id="sport" href="coach.php?sport=football">
                 <div class="texte">
                     <p>Football</p>
                 </div>
                 <img src="./image/sport_compet/football.jpeg" alt="">
-            </div>
-            <div id="sport">
+            </a>
+            <a id="sport" href="coach.php?sport=rugby">
                 <img src="./image/sport_compet/rugby.jpeg" alt="">
                 <div class="texte">
                     <p>Rugby</p>
                 </div>
-            </div>
-            <div id="sport">
+            </a>
+            <a id="sport" href="coach.php?sport=tennis">
                 <div class="texte">
                     <p>Tennis</p>
                 </div>
                 <img src="./image/sport_compet/tennis.jpeg" alt="">
-            </div>
-            <div id="sport">
+            </a>
+            <a id="sport" href="coach.php?sport=natation">
                 <img src="./image/sport_compet/natation.jpeg" alt="">
                 <div class="texte">
                     <p>Natation</p>
                 </div>
-            </div>
-            <div id="sport">
+            </a>
+            <a id="sport" href="coach.php?sport=plongeon">
                 <div class="texte">
                     <p>Plongeon</p>
                 </div>
                 <img src="./image/sport_compet/plongeon.jpeg" alt="">
-
-            </div>
+            </a>
         </div>
         <footer class="pied-de-page">
             <div class="conteneur">

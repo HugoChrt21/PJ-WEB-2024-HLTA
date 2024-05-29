@@ -21,7 +21,7 @@
         <ul>
             <li><a href="accueil.php">Accueil</a></li>
             <li>
-                <a href="#" class="active">Tout Parcourir</a> <!-- Ajout de la classe active ici -->
+                <a href="#" class="active">Tout Parcourir</a>
                 <ul class="dropdown">
                     <li><a href="act_sportive.php">Activités sportives</a></li>
                     <li><a href="sport_compet.php">Les Sports de compétition</a></li>

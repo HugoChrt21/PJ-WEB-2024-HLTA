@@ -102,45 +102,9 @@ nav ul li ul.dropdown li a:hover {
   overflow-y: scroll;
 }
 
-.sports {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#sport {
-  text-decoration: none;
-  color: inherit;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  width: 80%;
-  height: 250px;
-  margin: 30px;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-}
-
-#sport img {
-  width: auto;
-  height: 100%;
-  margin: 0 10px 0 10px;
-}
-
-#sport .texte {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#sport p {
-  color: #202c2d;
-  background: #ffffff;
-  text-shadow: 0 1px #808d93, -1px 0 #cdd2d5, -1px 2px #808d93, -2px 1px #cdd2d5,
-    -2px 3px #808d93, -3px 2px #cdd2d5, -3px 4px #808d93, -4px 3px #cdd2d5,
-    -4px 5px #808d93, -5px 4px #cdd2d5, -5px 6px #808d93, -6px 5px #cdd2d5,
-    -6px 7px #808d93, -7px 6px #cdd2d5, -7px 8px #808d93, -8px 7px #cdd2d5;
-  font-size: 100px;
+.titre {
+  text-align: center;
+  padding: 30px;
 }
 
 .pied-de-page {
@@ -148,7 +112,6 @@ nav ul li ul.dropdown li a:hover {
   color: #fff;
   padding: 1rem 0;
   text-align: center;
-  margin-top: 2rem;
 }
 
 .pied-de-page p {
@@ -167,4 +130,65 @@ nav ul li ul.dropdown li a:hover {
 
 .pied-de-page ul li i {
   margin-right: 0.5rem;
+}
+
+.titre {
+  display: block;
+}
+
+.coachs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.coach-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+}
+
+.coach-photo {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.coach-info h2 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.coach-info p {
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0;
+}
+
+.coach-buttons {
+  margin-top: 15px;
+}
+
+.coach-buttons .btn {
+  background-color: #45a049;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.coach-buttons .btn:hover {
+  background-color: darkgreen;
 }

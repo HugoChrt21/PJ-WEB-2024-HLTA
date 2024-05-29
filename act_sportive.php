@@ -21,7 +21,7 @@
         <ul>
             <li><a href="accueil.php">Accueil</a></li>
             <li>
-                <a href="#" class="active">Tout Parcourir</a> <!-- Ajout de la classe active ici -->
+                <a href="#" class="active">Tout Parcourir</a>
                 <ul class="dropdown">
                     <li><a href="act_sportive.php">Activités sportives</a></li>
                     <li><a href="sport_compet.php">Les Sports de compétition</a></li>
@@ -35,36 +35,36 @@
     </nav>
     <div class="wrapper">
         <div class="sports">
-            <div id="sport" class="musculation">
+            <a id="sport" href="coach.php?sport=musculation">
                 <img src="./image/act_sportive/musculation.jpeg" alt="">
                 <div class="texte">
                     <p>Musculation</p>
                 </div>
-            </div>
-            <div id="sport" class="fitness">
+            </a>
+            <a id="sport" href="coach.php?sport=fitness">
                 <div class="texte">
                     <p>Fitness</p>
                 </div>
                 <img src="./image/act_sportive/fitness.jpeg" alt="">
-            </div>
-            <div id="sport" class="biking">
+            </a>
+            <a id="sport" href="coach.php?sport=biking">
                 <img src="./image/act_sportive/biking.jpeg" alt="">
                 <div class="texte">
                     <p>Biking</p>
                 </div>
-            </div>
-            <div id="sport" class="cardio_training">
+            </a>
+            <a id="sport" href="coach.php?sport=cardio_training">
                 <div class="texte">
                     <p>Cardio-Training</p>
                 </div>
                 <img src="./image/act_sportive/cardio.jpeg" alt="">
-            </div>
-            <div id="sport" class="cours_collectifs">
+            </a>
+            <a id="sport" href="coach.php?sport=cours_collectifs">
                 <img src="./image/act_sportive/cours_coll.jpeg" alt="">
                 <div class="texte">
                     <p>Cours Collectifs</p>
                 </div>
-            </div>
+            </a>
         </div>
         <footer class="pied-de-page">
             <div class="conteneur">
