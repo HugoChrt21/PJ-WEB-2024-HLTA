@@ -1,20 +1,29 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Votre Page Web</title>
+    <title>Inscription</title>
     <link rel="stylesheet" href="inscription.css">
 </head>
 
 <?php
-$user = "root";
-$psd = "root";
-$db = "mysql:host=localhost;dbname=Sportify";
+// Informations de connexion à la base de données
+$serveur = "localhost:3307";
+$utilisateur = "root";
+$mot_de_passe = "123";
+$base_de_donnees = "Sportify";
 
 try {
-    $cx = new PDO($db, $user, $psd);
+    // Connexion à la base de données
+    $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     $error_message = "Une erreur est survenue lors de la connexion : " . $e->getMessage();
@@ -69,7 +78,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_account'])) {
         } catch (PDOException $e) {
             $error_message = "Une erreur est survenue lors de la création du compte : " . $e->getMessage();
         }
-
 
         $sql = "INSERT INTO connexion (mail, MDP, type)
                 VALUES (:email, :password, 'client')";
@@ -178,18 +186,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_account'])) {
             } ?>
             <p><a href="compte.php" style="color: blue;">Retour à la page de connexion</a></p>
         </div>
-        <footer class="pied-de-page">
-            <div class="conteneur">
-                <p>Contactez-nous :</p>
-                <ul>
-                    <li><i class="fas fa-envelope"></i> Email : contact@sportify.com</li>
-                    <li><i class="fas fa-phone"></i> Téléphone : +33 1 23 45 67 89</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Adresse : 123 Rue de Sport, Paris, France</li>
-                </ul>
-            </div>
-        </footer>
     </div>
-
+    <footer class="pied-de-page">
+        <div class="conteneur">
+            <p>Contactez-nous :</p>
+            <ul>
+                <li><i class="fas fa-envelope"></i> Email : contact@sportify.com</li>
+                <li><i class="fas fa-phone"></i> Téléphone : +33 1 23 45 67 89</li>
+                <li><i class="fas fa-map-marker-alt"></i> Adresse : 123 Rue de Sport, Paris, France</li>
+            </ul>
+        </div>
+    </footer>
 </body>
 
 </html>
