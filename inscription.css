@@ -178,3 +178,57 @@
   .pied-de-page ul li i {
     margin-right: 0.5rem;
   }
+
+  .inputForm {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .inputForm svg {
+    margin-right: 10px;
+  }
+  
+  .input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 5px;
+  }
+  
+  .buttonForm {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button {
+    background-color: #5a67d8;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #434190;
+  }
+  
+  .mt-8 {
+    margin-top: 8px;
+    text-align: center;
+  }
+  
+  .mt-8 a {
+    color: #5a67d8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .mt-8 a:hover {
+    color: #434190;
+  }
