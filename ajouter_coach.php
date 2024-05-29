@@ -177,6 +177,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </ul>
         </div>
     </footer>
-    <script src="script.js"></script>
+    <script src="script_ajout.js"></script>
 </body>
 </html>
