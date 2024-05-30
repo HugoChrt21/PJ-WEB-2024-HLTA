@@ -210,6 +210,7 @@ if ($user) {
                     <ul>
                         <li><a href="ajouter_coach.php">Ajouter un Coach</a></li>
                         <li><a href="supprimer_coach.php">Supprimer un Coach</a></li>
+                        <li><a href="cv_crea.php">Créer un CV XML</a></li> <!-- Ajout du lien pour créer un CV XML -->
                     </ul>
                 </div>
             <?php endif; ?>
