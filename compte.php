@@ -12,7 +12,7 @@ if (!isset($_SESSION['email'])) {
 $email = $_SESSION['email'];
 
 
-$user = "root";
+/* $user = "root";
 $psd = "root";
 $db = "mysql:host=localhost;dbname=Sportify";
 
@@ -22,23 +22,23 @@ try {
 } catch (PDOException $e) {
     echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
     die();
+} */
+
+$serveur = "localhost:3307";
+$utilisateur = "root";
+$mot_de_passe = "123";
+$base_de_donnees = "Sportify";
+
+try {
+    // Connexion à la base de données
+    $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
+    $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+} catch (PDOException $e) {
+    $error_message = "Une erreur est survenue lors de la connexion à la base de données : " . $e->getMessage();
+    echo "<script>console.error('" . $error_message . "');</script>";
+    die();
 }
-
-// $serveur = "localhost:3307";
-// $utilisateur = "root";
-// $mot_de_passe = "123";
-// $base_de_donnees = "Sportify";
-
-// try {
-//     // Connexion à la base de données
-//     $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
-//     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-// } catch (PDOException $e) {
-//     $error_message = "Une erreur est survenue lors de la connexion à la base de données : " . $e->getMessage();
-//     echo "<script>console.error('" . $error_message . "');</script>";
-//     die();
-// }
 
 
 $stmt = $cx->prepare("SELECT * FROM connexion WHERE mail = :email");
@@ -79,12 +79,83 @@ if ($user) {
 
 <!DOCTYPE html>
 <html lang="fr">
-
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votre Compte</title>
     <link rel="stylesheet" href="compte.css">
+    <style>
+        .chat-bubble {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #0fd850;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-window {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            border: 1px solid #ccc;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-window header {
+            background-color: #0fd850;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-window .messages {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        .chat-window .input {
+            display: flex;
+            padding: 10px;
+        }
+
+        .chat-window .input input {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .chat-window .input button {
+            background-color: #0fd850;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+            
+        }
+    </style>
 </head>
 
 <body>
@@ -147,6 +218,25 @@ if ($user) {
                 <button type="submit" class="button-21">Déconnexion</button>
             </form>
         </div>
+        <div class="chat-bubble" id="chatBubble">💬</div>
+    <div class="chat-window" id="chatWindow">
+        <header>
+            <span>Chat</span>
+            <span id="closeChat" style="cursor:pointer;">&times;</span>
+        </header>
+        <div class="messages" id="chatMessages"></div>
+        <div class="input">
+            <input type="text" id="chatInput" placeholder="Votre message...">
+            <button id="sendMessage">Envoyer</button>
+        </div>
+        <div class="actions">
+            <button id="startVideoCall">Appel vidéo</button>
+            <button id="sendEmail">Envoyer un courriel</button>
+        </div>
+    </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script_chat.js"></script>
     </div>
     <footer class="pied-de-page">
         <div class="conteneur">
@@ -157,6 +247,7 @@ if ($user) {
                 <li><i class="fas fa-map-marker-alt"></i> Adresse : 123 Rue de Sport, Paris, France</li>
             </ul>
         </div>
+    
     </footer>
 </body>
 
