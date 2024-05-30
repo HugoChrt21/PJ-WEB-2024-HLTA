@@ -133,4 +133,39 @@ nav ul li ul.dropdown li a:hover {
   align-items: center;
   justify-content: center;
 }
+#sport p {
+  color: #202c2d;
+  background: #ffffff;
+  text-shadow: 0 1px #808d93, -1px 0 #cdd2d5, -1px 2px #808d93, -2px 1px #cdd2d5,
+    -2px 3px #808d93, -3px 2px #cdd2d5, -3px 4px #808d93, -4px 3px #cdd2d5,
+    -4px 5px #808d93, -5px 4px #cdd2d5, -5px 6px #808d93, -6px 5px #cdd2d5,
+    -6px 7px #808d93, -7px 6px #cdd2d5, -7px 8px #808d93, -8px 7px #cdd2d5;
+  font-size: 100px;
+}
+
+.pied-de-page {
+  background: #333;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.pied-de-page p {
+  margin: 0;
+}
+
+.pied-de-page ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pied-de-page ul li {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.pied-de-page ul li i {
+  margin-right: 0.5rem;
+}
 
