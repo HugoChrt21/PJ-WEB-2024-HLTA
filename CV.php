@@ -60,7 +60,7 @@ try {
                 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($result as $k => $v) {
                     echo "
-                             <img src=\"./image/coach/CV/" . $v["CV"] . "\">
+                        <img src=\"./image/coach/CV/" . $v["CV"] . "\">
                     ";
 
                 }

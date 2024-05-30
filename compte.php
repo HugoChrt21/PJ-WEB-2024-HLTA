@@ -50,21 +50,23 @@ if ($user) {
     $userType = $user['type'];
     $_SESSION['type'] = $userType;
 
+
     if ($userType == 'client') {
+
         $stmtClient = $cx->prepare("SELECT * FROM client WHERE mail = :email");
-        echo "<script>console.error('client');</script>";
+        // echo "<script>console.error('client');</script>";
         $stmtClient->bindParam(':email', $email);
         $stmtClient->execute();
         $clientInfo = $stmtClient->fetch(PDO::FETCH_ASSOC);
     } elseif ($userType == 'coach') {
-        echo "<script>console.error('coach');</script>";
+        // echo "<script>console.error('coach');</script>";
         $stmtCoach = $cx->prepare("SELECT * FROM coach WHERE mail = :email");
         $stmtCoach->bindParam(':email', $email);
         $stmtCoach->execute();
         $coachInfo = $stmtCoach->fetch(PDO::FETCH_ASSOC);
     } elseif ($userType == 'admin') {
         $stmtAdmin = $cx->prepare("SELECT * FROM admin1 WHERE Mail = :email");
-        echo "<script>console.error('admin');</script>";
+        // echo "<script>console.error('admin');</script>";
         $stmtAdmin->bindParam(':email', $email);
         $stmtAdmin->execute();
         $adminInfo = $stmtAdmin->fetch(PDO::FETCH_ASSOC);
@@ -116,28 +118,29 @@ if ($user) {
             <h2>Votre Compte</h2>
             <p>Adresse e-mail : <?php echo htmlspecialchars($email); ?></p>
             <?php if ($userType == 'client'): ?>
-            <p>Nom : <?php echo htmlspecialchars($clientInfo['nom']); ?></p>
-            <p>Prénom : <?php echo htmlspecialchars($clientInfo['prenom']); ?></p>
-            <p>Adresse : <?php echo htmlspecialchars($clientInfo['adresse']); ?></p>
-            <p>Ville : <?php echo htmlspecialchars($clientInfo['ville']); ?></p>
-            <p>Code Postal : <?php echo htmlspecialchars($clientInfo['code_postal']); ?></p>
-            <p>Pays : <?php echo htmlspecialchars($clientInfo['pays']); ?></p>
-            <p>Téléphone : <?php echo htmlspecialchars($clientInfo['numero_telephone']); ?></p>
-            <p>Numéro Carte Étudiant : <?php echo htmlspecialchars($clientInfo['numero_carte_etudiant']); ?></p>
+                <p>Nom : <?php echo htmlspecialchars($clientInfo['nom']); ?></p>
+                <p>Prénom : <?php echo htmlspecialchars($clientInfo['prenom']); ?></p>
+                <p>Adresse : <?php echo htmlspecialchars($clientInfo['adresse']); ?></p>
+                <p>Ville : <?php echo htmlspecialchars($clientInfo['ville']); ?></p>
+                <p>Code Postal : <?php echo htmlspecialchars($clientInfo['code_postal']); ?></p>
+                <p>Pays : <?php echo htmlspecialchars($clientInfo['pays']); ?></p>
+                <p>Téléphone : <?php echo htmlspecialchars($clientInfo['numero_telephone']); ?></p>
+                <p>Numéro Carte Étudiant : <?php echo htmlspecialchars($clientInfo['numero_carte_etudiant']); ?></p>
+                <?php $_SESSION['id'] = $clientInfo['ID'] ?>
             <?php elseif ($userType == 'coach'): ?>
-            <p>Nom : <?php echo htmlspecialchars($coachInfo['nom']); ?></p>
-            <p>Prénom : <?php echo htmlspecialchars($coachInfo['prenom']); ?></p>
-            <p>Spécialité : <?php echo isset($coachInfo['specialite']) ?></p>
-            <p>Bureau : <?php echo isset($coachInfo['bureau']) ?></p>
+                <p>Nom : <?php echo htmlspecialchars($coachInfo['nom']); ?></p>
+                <p>Prénom : <?php echo htmlspecialchars($coachInfo['prenom']); ?></p>
+                <p>Spécialité : <?php echo isset($coachInfo['specialite']) ?></p>
+                <p>Bureau : <?php echo isset($coachInfo['bureau']) ?></p>
 
             <?php elseif ($userType == 'admin'): ?>
-            <div class="admin-options">
-                <h3>Options Administrateur</h3>
-                <ul>
-                    <li><a href="ajouter_coach.php">Ajouter un Coach</a></li>
-                    <li><a href="supprimer_coach.php">Supprimer un Coach</a></li>
-                </ul>
-            </div>
+                <div class="admin-options">
+                    <h3>Options Administrateur</h3>
+                    <ul>
+                        <li><a href="ajouter_coach.php">Ajouter un Coach</a></li>
+                        <li><a href="supprimer_coach.php">Supprimer un Coach</a></li>
+                    </ul>
+                </div>
             <?php endif; ?>
 
             <form action="deconnexion.php" method="post">

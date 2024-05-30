@@ -66,6 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             $welcome_message = "Bienvenue !";
             // Stockez l'adresse e-mail de l'utilisateur dans la session
             $_SESSION['email'] = $email;
+            $_SESSION['type'] = $user['type'];
+            echo "<script>console.error('" . $user['type'] . "');</script>";
+
+
             // Redirigez l'utilisateur vers la page compte.php
             header("Location: compte.php");
             exit(); // Assurez-vous que le script s'arrête après la redirection

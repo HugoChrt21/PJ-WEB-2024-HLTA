@@ -31,8 +31,8 @@
                 </ul>
             </li>
             <li><a href="recherche.php">Recherche</a></li>
-            <li><a href="#">Rendez-vous</a></li>
-            <li><a href="connexion.php">Votre Compte</a></li>
+            <li><a href="rdv.php">Rendez-vous</a></li>
+            <li><a href="compte.php">Votre Compte</a></li>
         </ul>
     </nav>
     <div class="wrapper">

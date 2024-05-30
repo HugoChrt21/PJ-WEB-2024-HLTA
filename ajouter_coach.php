@@ -104,6 +104,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->bindParam(':password', $coachMDP);
 
         $stmt->execute();
+
+    } catch (PDOException $e) {
+        $error_message = "Une erreur est survenue lors de la création du compte : " . $e->getMessage();
+    }
+
+    $sql = "INSERT INTO edt (nom, prenom)
+                VALUES (:nom, :prenom)";
+
+    try {
+        $stmt = $cx->prepare($sql);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+
+        $stmt->execute();
         header("Location: compte.php?success=Coach ajouté avec succès");
         exit(); // Assurez-vous que le script s'arrête après la redirection
     } catch (PDOException $e) {

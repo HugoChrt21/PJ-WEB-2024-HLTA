@@ -63,6 +63,7 @@ try {
                         echo " <p>" . $v["prenom"] . " " . $v["nom"] . "</p> ";
                         $prenom = $v["prenom"];
                         $nom = $v["nom"];
+                        $bureau = $v["bureau"];
                     }
                 } catch (PDOException $e) {
                     echo "Erreur : " . $e->getMessage() . "</br>";
@@ -76,6 +77,8 @@ try {
                 <input type="hidden" name="hour" id="selected-hour">
                 <input type="hidden" name="prenom" value="<?php echo $prenom; ?>">
                 <input type="hidden" name="nom" value="<?php echo $nom; ?>">
+                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                <input type="hidden" name="bureau" value="<?php echo $bureau; ?>">
             </form>
 
             <button id="confirm-btn">Confirmer RDV</button>
