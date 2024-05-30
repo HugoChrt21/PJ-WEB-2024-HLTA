@@ -39,6 +39,8 @@
                 <img src="./image/salle_sport/salle_de_sport.png" alt="Salle de luxe">
                 <div class="texte">
                     <p class="nom_salle">Salle Omnes </p>
+                    <p class="mail_salle">salle@omnessport.fr</p>
+                    <p class="numero_salle">+33 1 12 23 45 67</p>
                     <div class="boutton">
                         Nos Services
                     </div>
