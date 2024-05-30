@@ -219,21 +219,21 @@ if ($user) {
                 <button type="submit" class="button-21">Déconnexion</button>
             </form>
         </div>
-        <div class="chat-bubble" id="chatBubble">💬</div>
+        <div class="chat-bubble" id="chatBubble">
+        💬
+    </div>
+
     <div class="chat-window" id="chatWindow">
         <header>
             <span>Chat</span>
-            <span id="closeChat" style="cursor:pointer;">&times;</span>
+            <button id="closeChat">X</button>
         </header>
         <div class="messages" id="chatMessages"></div>
         <div class="input">
-            <input type="text" id="chatInput" placeholder="Votre message...">
+            <input type="text" id="chatInput" placeholder="Écrire un message...">
             <button id="sendMessage">Envoyer</button>
         </div>
-        <div class="actions">
-            <button id="startVideoCall">Appel vidéo</button>
-            <button id="sendEmail">Envoyer un courriel</button>
-        </div>
+    </div>
     </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
