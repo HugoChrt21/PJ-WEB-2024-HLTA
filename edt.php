@@ -74,7 +74,10 @@ try {
             <form id="rdv-form" method="POST" action="prise_de_rdv.php">
                 <input type="hidden" name="day" id="selected-day">
                 <input type="hidden" name="hour" id="selected-hour">
+                <input type="hidden" name="prenom" value="<?php echo $prenom; ?>">
+                <input type="hidden" name="nom" value="<?php echo $nom; ?>">
             </form>
+
             <button id="confirm-btn">Confirmer RDV</button>
             <table>
                 <thead>

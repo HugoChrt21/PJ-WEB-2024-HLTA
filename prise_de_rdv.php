@@ -2,6 +2,8 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $day = intval($_POST['day']);
     $hour = $_POST['hour'];
+    $prenom = $_POST['prenom'];
+    $nom = $_POST['nom'];
 
     $user = "root";
     $psd = "root";
@@ -14,7 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $days = ['LUN', 'MAR', 'MER', 'JEU', 'VEN'];
         $colName = $days[$day - 1] . substr($hour, 0, -1);
 
-        $stmt = $cx->prepare("UPDATE edt SET $colName = 1 WHERE prenom = 'Emma' AND nom = 'Smith'");
+        $stmt = $cx->prepare("UPDATE edt SET $colName = 1 WHERE prenom = :prenom AND nom = :nom");
+        $stmt->bindParam(':prenom', $prenom, PDO::PARAM_STR);
+        $stmt->bindParam(':nom', $nom, PDO::PARAM_STR);
         $stmt->execute();
 
         header("Location: accueil.php");
