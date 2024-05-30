@@ -36,12 +36,23 @@
         </ul>
     </nav>
     <div class="wrapper">
-        <h2>EVENEMENT DE LA SEMAINE</h2>
-        <img src="./image/accueil/evenement-de-la-semaine.jpg" alt="Événement de la semaine"
+
+        <div class="sports">
+            <a id="sport">
+                <div class="texte">
+                    <p>EVENEMENT DE LA SEMAINE </p>
+                </div>
+            </a>
+        <img  class="event-image"  src="./image/accueil/evenement-de-la-semaine.jpg" alt="Événement de la semaine"
             style="max-width: 70%; height: auto; margin-bottom: 40px;">
 
 
-        <h2>NOS SPECIALITE SPORTIVES</h2>
+        <div class="sports">
+            <a id="sport">
+                <div class="texte">
+                    <p>NOS SPECIALITE SPORTIVES</p>
+                </div>
+            </a>
 
         <div id="carrousel-container">
             <div id="carrousel">
