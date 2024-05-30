@@ -1,14 +1,11 @@
 <?php
 session_start();
 
-
+// Vérifiez si l'utilisateur est connecté et est un client
 // if (!isset($_SESSION['email']) || $_SESSION['type'] != 'client') {
 //     header("Location: connexion.php");
 //     exit();
 // }
-
-
-
 
 $user = "root";
 $psd = "root";
@@ -34,10 +31,6 @@ try {
 // } catch (PDOException $e) {
 //     echo "Une erreur est survenue : " . $e->getMessage();
 // }
-
-
-
-
 
 ?>
 
@@ -72,46 +65,48 @@ try {
                 </ul>
             </li>
             <li><a href="recherche.php">Recherche</a></li>
-            <li><a href="#">Rendez-vous</a></li>
-            <li><a href="compte.php " class="active">Votre Compte</a></li>
+            <li><a href="#" class="active">Rendez-vous</a></li>
+            <li><a href="compte.php ">Votre Compte</a></li>
         </ul>
     </nav>
-    <?php
-    $rdvs = [
-        [
-            'nom' => 'John',
-            'prenom' => 'Doe',
-            'jour' => '12 mai 2024',
-            'heure' => '14:00',
-            'adresse' => '123 Rue de la Réunion'
-        ],
-        [
-            'nom' => 'Jane',
-            'prenom' => 'Smith',
-            'jour' => '15 mai 2024',
-            'heure' => '10:30',
-            'adresse' => '456 Avenue des Roses'
-        ]
-    ];
-    ?>
 
     <div class="wrapper">
         <div class="container">
-            <?php foreach ($rdvs as $rdv): ?>
-            <div class="rdv">
-                <div class="info">Rendez-vous</div>
-                <div>Coach: <?= $rdv['nom'] . ' ' . $rdv['prenom'] ?></div>
-                <div>Jour: <?= $rdv['jour'] ?></div>
-                <div>Heure: <?= $rdv['heure'] ?></div>
-                <div>Adresse: <?= $rdv['adresse'] ?></div>
-                <button class="button">Annuler le RDV</button>
-            </div>
-            <?php endforeach; ?>
+
+            <?php
+            try {
+                $sql = "SELECT rdv.*, coach.prenom, coach.nom, coach.specialite 
+                        FROM rdv 
+                        JOIN coach ON rdv.ID_coach = coach.ID 
+                        WHERE rdv.ID_Client = :id";
+                $sth = $cx->prepare($sql);
+                $sth->bindParam(':id', $_SESSION['id'], PDO::PARAM_STR);
+                $sth->execute();
+                $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+                if (empty($result)) {
+                    echo "<div class=\"aucun_rdv\">Vous n'avez aucun RDV prévu</div>";
+                } else {
+                    foreach ($result as $k => $v) {
+                        echo "
+                        <div class=\"rdv\">
+                            <div class=\"info\">Rendez-vous</div>
+                            <div>Coach: " . htmlspecialchars($v["prenom"]) . " " . htmlspecialchars($v["nom"]) . "</div>
+                            <div>Spécialité: " . htmlspecialchars($v["specialite"]) . "</div>
+                            <div>Jour: " . htmlspecialchars($v["date"]) . " </div>
+                            <div>Heure: " . htmlspecialchars($v["heure"]) . " </div>
+                            <div>Adresse: " . htmlspecialchars($v["adresse"]) . "</div>
+                            <button class=\"button\">Annuler le RDV</button>
+                        </div>";
+                    }
+                }
+            } catch (PDOException $e) {
+                echo "Erreur : " . $e->getMessage() . "</br>";
+                die();
+            }
+            ?>
 
         </div>
-
-
-
     </div>
     <footer class="pied-de-page">
         <div class="conteneur">
@@ -123,8 +118,6 @@ try {
             </ul>
         </div>
     </footer>
-
-
 </body>
 
 </html>
