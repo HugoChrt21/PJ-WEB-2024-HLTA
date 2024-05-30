@@ -105,6 +105,7 @@ nav ul li ul.dropdown li a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+ 
 }
 
 h2 {
@@ -117,6 +118,7 @@ img {
   max-height: 100%;
   display: block;
   margin: auto;
+  border-radius: 20px;
 }
 
 #carrousel {
@@ -142,7 +144,8 @@ img {
 #carrousel-container {
   width: 800px;
   margin: auto;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  border-radius: 20px;
 }
 
 .controls {
@@ -214,4 +217,51 @@ img {
   width: 100%;
   box-sizing: border-box;
 }
+
+.sports {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#sport {
+  text-decoration: none;
+  color: inherit;
+  border-radius: 20px;
+  border: 3px solid #333; /* Bordure noire */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 60%;
+  height: 100px;
+  margin: 30px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+#sport .texte {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#sport p {
+  color: #fafafa;
+  
+  text-shadow: 0 1px #2a2c2c, -1px 0 #252525, -1px 2px #282828, -2px 1px #212121,
+    -2px 3px #2a2c2c, -3px 2px #252525, -3px 4px #282828, -4px 3px #212121,
+    -4px 5px #2a2c2c, -5px 4px #252525, -5px 6px #282828, -6px 5px #212121,
+    -6px 7px #2a2c2c, -7px 6px #252525, -7px 8px #808d93, -8px 7px #212121;
+  font-size: 50px;
+}
+
+.event-image {
+  max-width: 70%;
+  height: auto;
+  margin-bottom: 40px;
+  border-radius: 20px;
+  border: 5px solid #333; /* Bordure noire */
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
 
