@@ -98,30 +98,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sql = "INSERT INTO connexion (mail, MDP, type)
                 VALUES (:email, :password, 'coach')";
 
-        try {
-            $stmt = $cx->prepare($sql);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $coachMDP);
+    try {
+        $stmt = $cx->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $coachMDP);
 
-            $stmt->execute();
-            header("Location: compte.php?success=Coach ajouté avec succès");
-            exit(); // Assurez-vous que le script s'arrête après la redirection
-        } catch (PDOException $e) {
-            $error_message = "Une erreur est survenue lors de la création du compte : " . $e->getMessage();
-        }
-            
-    
+        $stmt->execute();
+        header("Location: compte.php?success=Coach ajouté avec succès");
+        exit(); // Assurez-vous que le script s'arrête après la redirection
+    } catch (PDOException $e) {
+        $error_message = "Une erreur est survenue lors de la création du compte : " . $e->getMessage();
+    }
+
+
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un coach</title>
-    <link rel="stylesheet" href="compte.css">
+    <link rel="stylesheet" href="ajouter_coach.css">
 </head>
+
 <body>
     <header>
         <div class="slogan">
@@ -131,8 +133,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <img src="./image/act_sportive/logo_sportify.png" alt="Logo">
         </div>
     </header>
+    <nav>
+        <ul>
+            <li><a href="accueil.php">Accueil</a></li>
+            <li>
+                <a href="#">Tout Parcourir</a>
+                <ul class="dropdown">
+                    <li><a href="act_sportive.php">Activités sportives</a></li>
+                    <li><a href="sport_compet.php">Les Sports de compétition</a></li>
+                    <li><a href="salle_sport.php">Salle de sport Omnes</a></li>
+                </ul>
+            </li>
+            <li><a href="recherche.php">Recherche</a></li>
+            <li><a href="#">Rendez-vous</a></li>
+            <li><a href="compte.php " class="active">Votre Compte</a></li>
+        </ul>
+    </nav>
 
     <div class="wrapper">
+        <button class="btn-retour" onclick="history.back()">Retour</button>
         <div class="form-container">
             <h2>Ajouter un coach :</h2>
             <form action="" method="post" enctype="multipart/form-data">
@@ -166,7 +185,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
     </div>
-
     <footer class="pied-de-page">
         <div class="conteneur">
             <p>Contactez-nous :</p>
@@ -179,4 +197,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </footer>
     <script src="script_ajout.js"></script>
 </body>
+
 </html>

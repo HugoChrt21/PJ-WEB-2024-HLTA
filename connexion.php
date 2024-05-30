@@ -18,21 +18,34 @@ session_start(); // Commencez la session
 
 <?php
 
-// Informations de connexion à la base de données
-$serveur = "localhost:3307";
-$utilisateur = "root";
-$mot_de_passe = "123";
-$base_de_donnees = "Sportify";
+
+$user = "root";
+$psd = "root";
+$db = "mysql:host=localhost;dbname=Sportify";
 
 try {
-    // Connexion à la base de données
-    $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
+    $cx = new PDO($db, $user, $psd);
     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    $error_message = "Une erreur est survenue lors de la connexion : " . $e->getMessage();
-    echo "<script>console.error('" . $error_message . "');</script>";
+    echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
     die();
 }
+
+
+// $serveur = "localhost:3307";
+// $utilisateur = "root";
+// $mot_de_passe = "123";
+// $base_de_donnees = "Sportify";
+
+// try {
+//     // Connexion à la base de données
+//     $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
+//     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// } catch (PDOException $e) {
+//     $error_message = "Une erreur est survenue lors de la connexion : " . $e->getMessage();
+//     echo "<script>console.error('" . $error_message . "');</script>";
+//     die();
+// }
 
 $error_message = '';
 $welcome_message = '';
@@ -79,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
         <ul>
             <li><a href="accueil.php">Accueil</a></li>
             <li>
-                <a href="#" class="active">Tout Parcourir</a>
+                <a href="#">Tout Parcourir</a>
                 <ul class="dropdown">
                     <li><a href="act_sportive.php">Activités sportives</a></li>
                     <li><a href="sport_compet.php">Les Sports de compétition</a></li>
@@ -88,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             </li>
             <li><a href="recherche.php">Recherche</a></li>
             <li><a href="#">Rendez-vous</a></li>
-            <li><a href="connexion.php">Votre Compte</a></li>
+            <li><a href="compte.php " class="active">Votre Compte</a></li>
         </ul>
     </nav>
     <div class="wrapper">
@@ -104,12 +117,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
                 <br>
                 <input type="submit" value="Connexion">
             </form>
-            <?php if ($error_message) {
-                echo "<p style='color: red;'>$error_message</p>";
-            } ?>
-            <?php if ($welcome_message) {
-                echo "<p style='color: green;'>$welcome_message</p>";
-            } ?>
             <p><a href="inscription.php" style="color: blue;">Vous n'avez pas de compte ?</a></p>
         </div>
     </div>
