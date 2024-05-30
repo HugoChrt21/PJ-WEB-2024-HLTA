@@ -2,10 +2,10 @@
 session_start();
 
 // Vérifiez si l'utilisateur est connecté et est un client
-// if (!isset($_SESSION['email']) || $_SESSION['type'] != 'client') {
-//     header("Location: connexion.php");
-//     exit();
-// }
+if (!isset($_SESSION['email']) || $_SESSION['type'] != 'client') {
+    header("Location: connexion.php");
+    exit();
+}
 
 $user = "root";
 $psd = "root";
@@ -18,19 +18,6 @@ try {
     echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
     die();
 }
-
-// $serveur = "localhost:3307";
-// $utilisateur = "root";
-// $mot_de_passe = "123";
-// $base_de_donnees = "Sportify";
-
-// try {
-//     $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
-//     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-// } catch (PDOException $e) {
-//     echo "Une erreur est survenue : " . $e->getMessage();
-// }
 
 ?>
 
@@ -66,13 +53,12 @@ try {
             </li>
             <li><a href="recherche.php">Recherche</a></li>
             <li><a href="#" class="active">Rendez-vous</a></li>
-            <li><a href="compte.php ">Votre Compte</a></li>
+            <li><a href="compte.php">Votre Compte</a></li>
         </ul>
     </nav>
 
     <div class="wrapper">
         <div class="container">
-
             <?php
             try {
                 $sql = "SELECT rdv.*, coach.prenom, coach.nom, coach.specialite 
@@ -80,7 +66,7 @@ try {
                         JOIN coach ON rdv.ID_coach = coach.ID 
                         WHERE rdv.ID_Client = :id";
                 $sth = $cx->prepare($sql);
-                $sth->bindParam(':id', $_SESSION['id'], PDO::PARAM_STR);
+                $sth->bindParam(':id', $_SESSION['id'], PDO::PARAM_INT);
                 $sth->execute();
                 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -96,7 +82,10 @@ try {
                             <div>Jour: " . htmlspecialchars($v["date"]) . " </div>
                             <div>Heure: " . htmlspecialchars($v["heure"]) . " </div>
                             <div>Adresse: " . htmlspecialchars($v["adresse"]) . "</div>
-                            <button class=\"button\">Annuler le RDV</button>
+                            <form method=\"post\" action=\"annuler_rdv.php\" onsubmit=\"return confirm('Êtes-vous sûr de vouloir annuler ce rendez-vous ?');\">
+                                <input type=\"hidden\" name=\"id_rdv\" value=\"" . htmlspecialchars($v["ID"]) . "\">
+                                <button type=\"submit\" class=\"button\">Annuler le RDV</button>
+                            </form>
                         </div>";
                     }
                 }
@@ -105,7 +94,6 @@ try {
                 die();
             }
             ?>
-
         </div>
     </div>
     <footer class="pied-de-page">
