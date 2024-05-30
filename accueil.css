@@ -1,3 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap");
+
+.texte {
+  font-family: "Poetsen One", sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -105,7 +111,6 @@ nav ul li ul.dropdown li a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
- 
 }
 
 h2 {
@@ -144,7 +149,9 @@ img {
 #carrousel-container {
   width: 800px;
   margin: auto;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
   border-radius: 20px;
 }
 
@@ -205,7 +212,7 @@ img {
 }
 #map {
   height: 400px;
-  width: 1500px;
+  width: 100%;
 }
 
 .title {
@@ -246,12 +253,8 @@ img {
   justify-content: center;
 }
 #sport p {
-  color: #fafafa;
-  
-  text-shadow: 0 1px #2a2c2c, -1px 0 #252525, -1px 2px #282828, -2px 1px #212121,
-    -2px 3px #2a2c2c, -3px 2px #252525, -3px 4px #282828, -4px 3px #212121,
-    -4px 5px #2a2c2c, -5px 4px #252525, -5px 6px #282828, -6px 5px #212121,
-    -6px 7px #2a2c2c, -7px 6px #252525, -7px 8px #808d93, -8px 7px #212121;
+  color: #222;
+
   font-size: 50px;
 }
 
@@ -261,7 +264,29 @@ img {
   margin-bottom: 40px;
   border-radius: 20px;
   border: 5px solid #333; /* Bordure noire */
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
 
+.welcome {
+  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+}
 
+.welcome h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.welcome p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+}
