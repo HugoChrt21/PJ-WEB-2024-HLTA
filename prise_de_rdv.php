@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_coach = $_POST['id'];
     $bureau = $_POST['bureau'];
 
+    $mail_client = $_SESSION['email'];
 
     $user = "root";
     $psd = "root";
@@ -46,9 +47,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':heure', $selected_hour);
         $stmt->execute();
 
-        // Redirection vers la page d'accueil après l'ajout du rendez-vous
-        header("Location: rdv.php");
-        exit();
+        // Envoyer un email de confirmation
+        $to = $mail_client;
+        echo "<script>console.error('" . $to . "');</script>";
+        $subject = "Confirmation de votre rendez-vous";
+        $message = "Bonjour $prenom $nom,\n\nVotre rendez-vous avec le coach ID $id_coach a été confirmé.\n\nDétails du rendez-vous:\nDate: $selected_date\nHeure: $selected_hour\nAdresse: $bureau\n\nMerci de votre confiance.\n\nCordialement,\nL'équipe Sportify";
+        $headers = "From: no-reply@sportify.fr";
+
+        if (mail($to, $subject, $message, $headers)) {
+            // Redirection vers la page d'accueil après l'ajout du rendez-vous et l'envoi de l'email
+            header("Location: rdv.php");
+            exit();
+        } else {
+            echo "Une erreur est survenue lors de l'envoi de l'email de confirmation.";
+        }
     } catch (PDOException $e) {
         echo "Une erreur est survenue lors de la création du rendez-vous : " . $e->getMessage();
         exit();
