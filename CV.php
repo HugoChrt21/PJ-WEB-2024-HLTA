@@ -4,20 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Votre Page Web</title>
+    <title>CV XML</title>
     <link rel="stylesheet" href="CV.css">
 </head>
 
 <?php
-$user = "root";
-$psd = "root";
-$db = "mysql:host=localhost;dbname=Sportify";
+$serveur = "localhost:3307";
+$utilisateur = "root";
+$mot_de_passe = "123";
+$base_de_donnees = "Sportify";
 
 try {
-    $cx = new PDO($db, $user, $psd);
+    // Connexion à la base de données
+    $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
+    $error_message = "Une erreur est survenue lors de la connexion à la base de données : " . $e->getMessage();
+    echo "<script>console.error('" . $error_message . "');</script>";
     die();
 }
 ?>
@@ -58,11 +61,35 @@ try {
                 $sth->bindParam(':id', $id, PDO::PARAM_STR);
                 $sth->execute();
                 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($result as $k => $v) {
-                    echo "
-                        <img src=\"./image/coach/CV/" . $v["CV"] . "\">
-                    ";
 
+                foreach ($result as $v) {
+                    // Récupérer le nom et prénom du coach
+                    $prenom = $v['prenom'];
+                    $nom = $v['nom'];
+                    
+                    // Construire le nom de fichier XML basé sur le nom et prénom
+                    $cv_file = "./CV_XML/" . strtolower($nom . "_" . $prenom) . "_CVXML.xml";
+                    
+                    if (file_exists($cv_file)) {
+                        $xml = simplexml_load_file($cv_file);
+                        
+                        echo "<h2>Coach</h2>";
+                        echo "<p><strong>" . $xml->coach . "</strong></p>";
+                        
+                        echo "<h2>Formation</h2>";
+                        $formations = explode("\n\n", $xml->formation);
+                        foreach ($formations as $formation) {
+                            echo "<p>" . nl2br($formation) . "</p>";
+                        }
+
+                        echo "<h2>Expériences Professionnelles</h2>";
+                        $experiences = explode("\n\n", $xml->experience);
+                        foreach ($experiences as $experience) {
+                            echo "<p>" . nl2br($experience) . "</p>";
+                        }
+                    } else {
+                        echo "Le fichier XML du CV pour " . htmlspecialchars($prenom . " " . $nom) . " n'a pas été trouvé.";
+                    }
                 }
             } catch (PDOException $e) {
                 echo "Erreur : " . $e->getMessage() . "</br>";
