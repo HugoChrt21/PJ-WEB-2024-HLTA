@@ -202,8 +202,9 @@ if ($user) {
             <?php elseif ($userType == 'coach'): ?>
                 <p>Nom : <?php echo htmlspecialchars($coachInfo['nom']); ?></p>
                 <p>Prénom : <?php echo htmlspecialchars($coachInfo['prenom']); ?></p>
-                <p>Spécialité : <?php echo isset($coachInfo['specialite']) ?></p>
-                <p>Bureau : <?php echo isset($coachInfo['bureau']) ?></p>
+                <p>Spécialité : <?php echo htmlspecialchars($coachInfo['specialite']); ?></p>
+                <p>Bureau : <?php echo htmlspecialchars($coachInfo['bureau']); ?></p>
+
 
             <?php elseif ($userType == 'admin'): ?>
                 <div class="admin-options">
