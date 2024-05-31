@@ -75,6 +75,7 @@ if ($user) {
     echo "Utilisateur non trouvé.";
     die();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -212,6 +213,7 @@ if ($user) {
                         <li><a href="supprimer_coach.php">Supprimer un Coach</a></li>
                         <li><a href="cv_crea.php">Créer un CV XML</a></li>
                         <li><a href="supprimer_cv.php">Supprimer un CV XML</a></li>
+                        <li><a href="ajouter_admin.php">Ajouter un Administrateur</a></li>
                     </ul>
                 </div>
             <?php endif; ?>
