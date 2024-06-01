@@ -12,18 +12,6 @@ if (!isset($_SESSION['email'])) {
 $email = $_SESSION['email'];
 
 
-/* $user = "root";
-$psd = "root";
-$db = "mysql:host=localhost;dbname=Sportify";
-
-try {
-    $cx = new PDO($db, $user, $psd);
-    $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
-    die();
-} */
-
 $serveur = "localhost:3307";
 $utilisateur = "root";
 $mot_de_passe = "123";
@@ -54,19 +42,26 @@ if ($user) {
     if ($userType == 'client') {
 
         $stmtClient = $cx->prepare("SELECT * FROM client WHERE mail = :email");
-        // echo "<script>console.error('client');</script>";
         $stmtClient->bindParam(':email', $email);
         $stmtClient->execute();
         $clientInfo = $stmtClient->fetch(PDO::FETCH_ASSOC);
+
+        // Récupérer tous les coachs pour que le client puisse les sélectionner
+        $stmtCoaches = $cx->query("SELECT * FROM coach");
+        $coaches = $stmtCoaches->fetchAll(PDO::FETCH_ASSOC);
     } elseif ($userType == 'coach') {
-        // echo "<script>console.error('coach');</script>";
+
         $stmtCoach = $cx->prepare("SELECT * FROM coach WHERE mail = :email");
         $stmtCoach->bindParam(':email', $email);
         $stmtCoach->execute();
         $coachInfo = $stmtCoach->fetch(PDO::FETCH_ASSOC);
+
+        // Récupérer les clients
+        $stmtClients = $cx->prepare("SELECT id, nom, prenom FROM client");
+        $stmtClients->execute();
+        $clients = $stmtClients->fetchAll(PDO::FETCH_ASSOC);
     } elseif ($userType == 'admin') {
         $stmtAdmin = $cx->prepare("SELECT * FROM admin1 WHERE Mail = :email");
-        // echo "<script>console.error('admin');</script>";
         $stmtAdmin->bindParam(':email', $email);
         $stmtAdmin->execute();
         $adminInfo = $stmtAdmin->fetch(PDO::FETCH_ASSOC);
@@ -182,6 +177,9 @@ if ($user) {
             <li><a href="recherche.php">Recherche</a></li>
             <li><a href="#">Rendez-vous</a></li>
             <li><a href="compte.php" class="active">Votre Compte</a></li>
+            <?php if ($userType == 'client'): ?>
+                <li><a href="chat_client.php">Chat avec un Coach</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
     <div class="wrapper">
@@ -198,13 +196,38 @@ if ($user) {
                 <p>Pays : <?php echo htmlspecialchars($clientInfo['pays']); ?></p>
                 <p>Téléphone : <?php echo htmlspecialchars($clientInfo['numero_telephone']); ?></p>
                 <p>Numéro Carte Étudiant : <?php echo htmlspecialchars($clientInfo['numero_carte_etudiant']); ?></p>
+
+                <h2>Sélectionner un coach pour discuter</h2>
+                <form method="post" action="chat_client.php">
+                    <label for="coach_id">Coachs:</label>
+                    <select id="coach_id" name="coach_id">
+                        <?php foreach ($coaches as $coach): ?>
+                            <option value="<?php echo $coach['ID']; ?>"><?php echo htmlspecialchars($coach['nom'] . " " . $coach['prenom']); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <input type="submit" value="Commencer la conversation">
+                </form>
+
                 <?php $_SESSION['id'] = $clientInfo['ID'] ?>
             <?php elseif ($userType == 'coach'): ?>
                 <p>Nom : <?php echo htmlspecialchars($coachInfo['nom']); ?></p>
                 <p>Prénom : <?php echo htmlspecialchars($coachInfo['prenom']); ?></p>
                 <p>Spécialité : <?php echo htmlspecialchars($coachInfo['specialite']); ?></p>
                 <p>Bureau : <?php echo htmlspecialchars($coachInfo['bureau']); ?></p>
-
+                <h2>Sélectionner un client pour discuter</h2>
+                <form method="get" action="chat.php">
+                    <label for="client_id">Clients:</label>
+                    <select id="client_id" name="client_id">
+                        <?php if (!empty($clients)): ?>
+                            <?php foreach ($clients as $client): ?>
+                                <option value="<?php echo $client['id']; ?>"><?php echo htmlspecialchars($client['nom'] . " " . $client['prenom']); ?></option>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <option value="">Aucun client trouvé</option>
+                        <?php endif; ?>
+                    </select>
+                    <input type="submit" value="Commencer la conversation">
+                </form>
 
             <?php elseif ($userType == 'admin'): ?>
                 <div class="admin-options">
@@ -215,6 +238,7 @@ if ($user) {
                         <li><a href="cv_crea.php">Créer un CV XML</a></li>
                         <li><a href="supprimer_cv.php">Supprimer un CV XML</a></li>
                         <li><a href="ajouter_admin.php">Ajouter un Administrateur</a></li>
+                        
                     </ul>
                 </div>
             <?php endif; ?>
@@ -223,25 +247,10 @@ if ($user) {
                 <button type="submit" class="button-21">Déconnexion</button>
             </form>
         </div>
-        <div class="chat-bubble" id="chatBubble">
-        💬
-    </div>
-
-    <div class="chat-window" id="chatWindow">
-        <header>
-            <span>Chat</span>
-            <button id="closeChat">X</button>
-        </header>
-        <div class="messages" id="chatMessages"></div>
-        <div class="input">
-            <input type="text" id="chatInput" placeholder="Écrire un message...">
-            <button id="sendMessage">Envoyer</button>
-        </div>
-    </div>
+    
     </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="script_chat.js"></script>
     </div>
     <footer class="pied-de-page">
         <div class="conteneur">
@@ -252,8 +261,10 @@ if ($user) {
                 <li><i class="fas fa-map-marker-alt"></i> Adresse : 123 Rue de Sport, Paris, France</li>
             </ul>
         </div>
+        
     
     </footer>
 </body>
 
 </html>
+
