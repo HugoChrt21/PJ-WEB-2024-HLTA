@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
         <ul>
             <li><a href="accueil.php">Accueil</a></li>
             <li>
-                <a href="#" class="active">Tout Parcourir</a>
+                <a href="#">Tout Parcourir</a>
                 <ul class="dropdown">
                     <li><a href="act_sportive.php">Activités sportives</a></li>
                     <li><a href="sport_compet.php">Les Sports de compétition</a></li>
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
             </li>
             <li><a href="recherche.php">Recherche</a></li>
             <li><a href="#">Rendez-vous</a></li>
-            <li><a href="connexion.php">Votre Compte</a></li>
+            <li><a href="connexion.php" class="active">Votre Compte</a></li>
         </ul>
     </nav>
     <div class="wrapper">
