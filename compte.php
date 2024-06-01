@@ -196,7 +196,11 @@ if ($user) {
                 <p>Pays : <?php echo htmlspecialchars($clientInfo['pays']); ?></p>
                 <p>Téléphone : <?php echo htmlspecialchars($clientInfo['numero_telephone']); ?></p>
                 <p>Numéro Carte Étudiant : <?php echo htmlspecialchars($clientInfo['numero_carte_etudiant']); ?></p>
-
+                <div>
+                    <form action="https://zoom.us/join" method="post">
+                    <button class="btnZoom"><i class="animation"></i>Communiquer via Zoom<i class="animation"></i></button>
+                    </form>
+                </div>
                 <h2>Sélectionner un coach pour discuter</h2>
                 <form method="post" action="chat_client.php">
                     <label for="coach_id">Coachs:</label>
@@ -207,6 +211,7 @@ if ($user) {
                     </select>
                     <input type="submit" value="Commencer la conversation">
                 </form>
+                
 
                 <?php $_SESSION['id'] = $clientInfo['ID'] ?>
             <?php elseif ($userType == 'coach'): ?>
@@ -214,6 +219,13 @@ if ($user) {
                 <p>Prénom : <?php echo htmlspecialchars($coachInfo['prenom']); ?></p>
                 <p>Spécialité : <?php echo htmlspecialchars($coachInfo['specialite']); ?></p>
                 <p>Bureau : <?php echo htmlspecialchars($coachInfo['bureau']); ?></p>
+                <div>
+                    <form action="https://zoom.us/join" method="post">
+                    <button class="btnZoom"><i class="animation"></i>Communiquer via Zoom<i class="animation"></i></button>
+                    </form>
+                </div>
+                
+                
                 <h2>Sélectionner un client pour discuter</h2>
                 <form method="get" action="chat.php">
                     <label for="client_id">Clients:</label>
