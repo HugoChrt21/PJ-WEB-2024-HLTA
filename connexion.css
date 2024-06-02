@@ -129,12 +129,11 @@
   .login-container form input,
   .login-container form select {
     padding: 10px 0;
-    width: 250px; /* Divise la largeur en deux pour chaque champ */
-    display: inline-block; /* Affiche les éléments sur la même ligne */
+    width: 250px; 
+    display: inline-block;
   }
   
   .login-container form input[type="submit"] {
-    /* font-size: 1rem; */
     width: 230px;
     height: 30px;
     background-color: #333;
@@ -142,7 +141,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin: 20px 0; /* Ajoute un espacement au bouton */
+    margin: 20px 0;
   }
   
   .login-container form input[type="submit"]:hover {
@@ -179,7 +178,7 @@
     margin-right: 0.5rem;
   }
 
-
+/* BOUTON CONNEXION */
   .connectBtn {
     width: 120px;
     height: 40px;
