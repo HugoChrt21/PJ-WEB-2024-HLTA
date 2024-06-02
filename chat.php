@@ -61,6 +61,8 @@ if ($type == 'coach') {
     // $user_name = $clientInfo['prenom'] . ' ' . $clientInfo['nom'];
     $conversation_id1 = $clientInfo['ID'] . $userInfo['ID'];
     $conversation_id2 = $userInfo['ID'] . $clientInfo['ID'];
+    $sender_id = $clientInfo['ID'];
+    $sender_type = 'client';
 } else {
     // Récupérer les informations du client
     $stmtUser = $cx->prepare("SELECT ID, nom, prenom FROM client WHERE ID = :id");
@@ -88,6 +90,8 @@ if ($type == 'coach') {
     // $user_name = $coachInfo['prenom'] . ' ' . $coachInfo['nom'];
     $conversation_id1 = $coachInfo['ID'] . $userInfo['ID'];
     $conversation_id2 = $userInfo['ID'] . $coachInfo['ID'];
+    $sender_id = $coachInfo['ID'];
+    $sender_type = 'coach';
 }
 
 // Récupérer les messages de la conversation
@@ -106,16 +110,16 @@ $messages = $stmtMessages->fetchAll(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat avec <?php echo htmlspecialchars($userInfo['prenom'] . ' ' . $userInfo['nom']); ?></title>
     <style>
-        .messages {
-            height: 300px;
-            overflow-y: scroll;
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
+    .messages {
+        height: 300px;
+        overflow-y: scroll;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
 
-        .message {
-            margin-bottom: 10px;
-        }
+    .message {
+        margin-bottom: 10px;
+    }
     </style>
 </head>
 
@@ -123,7 +127,7 @@ $messages = $stmtMessages->fetchAll(PDO::FETCH_ASSOC);
     <h2>Chat avec <?php echo htmlspecialchars($userInfo['prenom'] . ' ' . $userInfo['nom']); ?></h2>
     <div class="messages">
         <?php foreach ($messages as $message): ?>
-            <?php
+        <?php
             if ($type == 'coach' and $message['sender_type'] == 'coach') {
                 $sender_name = $userInfo['prenom'] . ' ' . $userInfo['nom'];
             } elseif ($type == 'coach' and $message['sender_type'] == 'client') {
@@ -135,15 +139,17 @@ $messages = $stmtMessages->fetchAll(PDO::FETCH_ASSOC);
             }
 
             ?>
-            <div class="message">
-                <strong><?php echo htmlspecialchars($sender_name); ?>:</strong>
-                <p><?php echo htmlspecialchars($message['message_content']); ?></p>
-            </div>
+        <div class="message">
+            <strong><?php echo htmlspecialchars($sender_name); ?>:</strong>
+            <p><?php echo htmlspecialchars($message['message_content']); ?></p>
+        </div>
         <?php endforeach; ?>
     </div>
     <form method="post" action="messages.php">
         <input type="hidden" name="conversation_id" value="<?php echo htmlspecialchars($conversation_id1); ?>">
-        <input type="hidden" name="sender_id" value="<?php echo htmlspecialchars($userInfo['ID']); ?>">
+        <input type="hidden" name="sender_id" value="<?php echo htmlspecialchars($sender_id); ?>">
+        <input type="hidden" name="receveur_id" value="<?php echo htmlspecialchars($userInfo['ID']); ?>">
+        <input type="hidden" name="sender_type" value="<?php echo htmlspecialchars($sender_type); ?>">
         <textarea name="message_content" rows="4" cols="50" placeholder="Écrire un message..."></textarea><br>
         <button type="submit">Envoyer</button>
     </form>
