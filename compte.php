@@ -11,35 +11,35 @@ if (!isset($_SESSION['email'])) {
 // Récupère les informations de l'utilisateur à partir de la session
 $email = $_SESSION['email'];
 
-/*  $user = "root";
- $psd = "root";
- $db = "mysql:host=localhost;dbname=Sportify";
-
- try {
-     $cx = new PDO($db, $user, $psd);
-     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
- } catch (PDOException $e) {
-     echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
-     die();
-}
- */
-
-$serveur = "localhost:3307";
-$utilisateur = "root";
-$mot_de_passe = "123";
-$base_de_donnees = "Sportify";
+$user = "root";
+$psd = "root";
+$db = "mysql:host=localhost;dbname=Sportify";
 
 try {
-    // Connexion à la base de données
-    $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
+    $cx = new PDO($db, $user, $psd);
     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 } catch (PDOException $e) {
-    // En cas d'erreur de connexion, affiche un message d'erreur dans la console
-    $error_message = "Une erreur est survenue lors de la connexion à la base de données : " . $e->getMessage();
-    echo "<script>console.error('" . $error_message . "');</script>";
+    echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
     die();
 }
+
+
+// $serveur = "localhost:3307";
+// $utilisateur = "root";
+// $mot_de_passe = "123";
+// $base_de_donnees = "Sportify";
+
+// try {
+//     // Connexion à la base de données
+//     $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
+//     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+// } catch (PDOException $e) {
+//     // En cas d'erreur de connexion, affiche un message d'erreur dans la console
+//     $error_message = "Une erreur est survenue lors de la connexion à la base de données : " . $e->getMessage();
+//     echo "<script>console.error('" . $error_message . "');</script>";
+//     die();
+// }
 
 // Prépare et exécute une requête pour récupérer les informations de l'utilisateur à partir de l'adresse e-mail
 $stmt = $cx->prepare("SELECT * FROM connexion WHERE mail = :email");
@@ -62,6 +62,7 @@ if ($user) {
 
         // Récupère tous les coachs pour que le client puisse les sélectionner
         $stmtCoaches = $cx->query("SELECT * FROM coach");
+        $stmtCoaches->execute();
         $coaches = $stmtCoaches->fetchAll(PDO::FETCH_ASSOC);
     } elseif ($userType == 'coach') {
         // Récupère les informations du coach
@@ -71,7 +72,7 @@ if ($user) {
         $coachInfo = $stmtCoach->fetch(PDO::FETCH_ASSOC);
 
         // Récupère les clients pour le coach
-        $stmtClients = $cx->prepare("SELECT id, nom, prenom FROM client");
+        $stmtClients = $cx->prepare("SELECT * FROM client");
         $stmtClients->execute();
         $clients = $stmtClients->fetchAll(PDO::FETCH_ASSOC);
     } elseif ($userType == 'admin') {
@@ -110,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['card_number']) && isse
 <!DOCTYPE html>
 <html lang="fr">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -141,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['card_number']) && isse
             <li><a href="recherche.php">Recherche</a></li>
             <li><a href="rdv.php">Rendez-vous</a></li>
             <li><a href="compte.php" class="active">Votre Compte</a></li>
-            
+
         </ul>
     </nav>
     <div class="wrapper">
@@ -160,45 +161,76 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['card_number']) && isse
                 <p>Numéro Carte Étudiant : <?php echo htmlspecialchars($clientInfo['numero_carte_etudiant']); ?></p>
                 <div>
                     <form action="https://zoom.us/join" method="post">
-                    <button class="btnZoom"><i class="animation"></i>Communiquer via Zoom<i class="animation"></i></button>
+                        <button class="btnZoom"><i class="animation"></i>Communiquer via Zoom<i
+                                class="animation"></i></button>
                     </form>
                 </div>
                 <h2>Sélectionner un coach pour discuter</h2>
-                <form method="post" action="chat.php">
+                <form method="get" action="chat.php">
                     <label for="coach_id">Coachs:</label>
                     <select id="coach_id" name="coach_id">
                         <?php foreach ($coaches as $coach): ?>
-                            <option value="<?php echo $coach['ID']; ?>"><?php echo htmlspecialchars($coach['nom'] . " " . $coach['prenom']); ?></option>
+                            <option value="<?php echo $coach['ID']; ?>">
+                                <?php echo htmlspecialchars($coach['nom'] . " " . $coach['prenom']); ?>
+                            </option>
                         <?php endforeach; ?>
                     </select>
                     <input type="submit" value="Commencer la conversation">
                 </form>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <h2>Effectuer un paiement</h2>
-            <form id="payment-form" method="post" action="compte.php">
-                <div class="form-group">
-                    <label for="activity">Sélectionnez une activité :</label>
-                    <select id="activity" name="activity" class="form-control" required>
-                        <option value="activity1">Activités sportives - 25€</option>
-                        <option value="activity2">Sports de compétitions - 40€</option>
-                        <option value="activity3">Salle de sport - 30€</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="card-number">Numéro de carte :</label>
-                    <input type="text" id="card-number" name="card_number" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="expiry-date">Date d'expiration :</label>
-                    <input type="text" id="expiry-date" name="expiry_date" class="form-control" placeholder="MM/AA" required>
-                </div>
-                <div class="form-group">
-                    <label for="cvv">CVV :</label>
-                    <input type="text" id="cvv" name="cvv" class="form-control" required>
-                </div>
-                <button type="submit" name="submit_payment" class="BtnPayer">Payer<svg class="svgIcon" viewBox="0 0 576 512"><path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path></svg></button>
-            </form>
-            
+                <form id="payment-form" method="post" action="compte.php">
+                    <div class="form-group">
+                        <label for="activity">Sélectionnez une activité :</label>
+                        <select id="activity" name="activity" class="form-control" required>
+                            <option value="activity1">Activités sportives - 25€</option>
+                            <option value="activity2">Sports de compétitions - 40€</option>
+                            <option value="activity3">Salle de sport - 30€</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="card-number">Numéro de carte :</label>
+                        <input type="text" id="card-number" name="card_number" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expiry-date">Date d'expiration :</label>
+                        <input type="text" id="expiry-date" name="expiry_date" class="form-control" placeholder="MM/AA"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV :</label>
+                        <input type="text" id="cvv" name="cvv" class="form-control" required>
+                    </div>
+                    <button type="submit" name="submit_payment" class="BtnPayer">Payer<svg class="svgIcon"
+                            viewBox="0 0 576 512">
+                            <path
+                                d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z">
+                            </path>
+                        </svg></button>
+                </form>
+
 
                 <?php $_SESSION['id'] = $clientInfo['ID'] ?>
             <?php elseif ($userType == 'coach'): ?>
@@ -208,7 +240,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['card_number']) && isse
                 <p>Bureau : <?php echo htmlspecialchars($coachInfo['bureau']); ?></p>
                 <div>
                     <form action="https://zoom.us/join" method="post">
-                    <button class="btnZoom"><i class="animation"></i>Communiquer via Zoom<i class="animation"></i></button>
+                        <button class="btnZoom"><i class="animation"></i>Communiquer via Zoom<i
+                                class="animation"></i></button>
                     </form>
                 </div>
                 <h2>Sélectionner un client pour discuter</h2>
@@ -217,7 +250,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['card_number']) && isse
                     <select id="client_id" name="client_id">
                         <?php if (!empty($clients)): ?>
                             <?php foreach ($clients as $client): ?>
-                                <option value="<?php echo $client['id']; ?>"><?php echo htmlspecialchars($client['nom'] . " " . $client['prenom']); ?></option>
+                                <option value="<?php echo $client['ID']; ?>">
+                                    <?php echo htmlspecialchars($client['nom'] . " " . $client['prenom']); ?>
+                                </option>
                             <?php endforeach; ?>
                         <?php else: ?>
                             <option value="">Aucun client trouvé</option>
@@ -225,7 +260,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['card_number']) && isse
                     </select>
                     <input type="submit" value="Commencer la conversation">
                 </form>
-                
+
 
             <?php elseif ($userType == 'admin'): ?>
                 <div class="admin-options">
@@ -243,9 +278,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['card_number']) && isse
                 <button type="submit" class="BtnDeco">Déconnexion</button>
             </form>
         </div>
-    
+
     </div>
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </div>
     <footer class="pied-de-page">
