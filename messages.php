@@ -13,6 +13,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $message_content = $_POST['message_content'];
     $coach_email = $_SESSION['email'];
 
+    /*  $user = "root";
+ $psd = "root";
+ $db = "mysql:host=localhost;dbname=Sportify";
+
+ try {
+     $cx = new PDO($db, $user, $psd);
+     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ } catch (PDOException $e) {
+     echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
+     die();
+}
+ */
+
     // Connexion à la base de données
     $serveur = "localhost:3307";
     $utilisateur = "root";
@@ -37,8 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Coach non trouvé.";
         die();
     }
-
-    // Récupérer les informations du client
     // Récupérer les informations du client
 $stmtClient = $cx->prepare("SELECT nom, prenom FROM client WHERE id = :conversation_id");
 $stmtClient->bindParam(':conversation_id', $conversation_id);
@@ -72,8 +83,6 @@ $clientInfo = $stmtClient->fetch(PDO::FETCH_ASSOC);
     $stmt->bindParam(':sender_name', $sender_name);
     $stmt->execute();
 
-
-    // Rediriger vers la page de chat
     header("Location: chat.php?client_id=" . $conversation_id);
     exit();
 }

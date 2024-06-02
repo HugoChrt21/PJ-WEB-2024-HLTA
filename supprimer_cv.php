@@ -14,6 +14,19 @@ if ($_SESSION['type'] !== 'admin') {
 
 $email = $_SESSION['email'];
 
+/*  $user = "root";
+ $psd = "root";
+ $db = "mysql:host=localhost;dbname=Sportify";
+
+ try {
+     $cx = new PDO($db, $user, $psd);
+     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ } catch (PDOException $e) {
+     echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
+     die();
+}
+ */
+
 $serveur = "localhost:3307";
 $utilisateur = "root";
 $mot_de_passe = "123";
@@ -29,7 +42,7 @@ try {
 
 // Code pour traiter le formulaire de suppression de CV
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer le nom du coach dont le CV doit être supprimé
+    // Récupérer le nom du coach
     $coachNom = $_POST['coach_nom'];
 
     // Supprimer le fichier XML du dossier CV_XML

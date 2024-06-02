@@ -14,6 +14,19 @@ if ($_SESSION['type'] !== 'admin') {
 
 $email = $_SESSION['email'];
 
+/*  $user = "root";
+ $psd = "root";
+ $db = "mysql:host=localhost;dbname=Sportify";
+
+ try {
+     $cx = new PDO($db, $user, $psd);
+     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ } catch (PDOException $e) {
+     echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
+     die();
+}
+ */
+
 $serveur = "localhost:3307";
 $utilisateur = "root";
 $mot_de_passe = "123";
@@ -29,7 +42,7 @@ try {
 
 // Code pour traiter le formulaire d'ajout de CV
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer les données du formulaire
+    // Récupération des données du formulaire
     $coach = $_POST['coach'];
     $formation = $_POST['formation'];
     $experience = $_POST['experience'];
@@ -53,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $xml .= '<autres>' . htmlspecialchars($autres) . '</autres>';
         $xml .= '</cv>';
 
-        // Enregistrez le document XML dans un dossier nommé CV_XML
+        // Enregistrez le XML dans le dossier CV_XML
         $dossier = 'CV_XML/';
         if (!is_dir($dossier)) {
             mkdir($dossier, 0777, true);
@@ -69,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Récupérer les noms des coaches disponibles dans la base de données
+// Récupération des noms des coaches dans la bdd
 try {
     $stmt = $cx->query("SELECT nom, prenom FROM coach");
     $coaches = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -84,32 +97,36 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cv créa</title>
+    <title>Créer un CV XML</title>
     <link rel="stylesheet" href="cv_crea.css">
 </head>
 <body>
-    <h1>Créer un CV XML</h1>
-    <form action="" method="post">
-        <label for="coach">Sélectionnez un coach :</label>
-        <select name="coach" id="coach">
-            <?php foreach ($coaches as $coach): ?>
-                <option value="<?php echo $coach['nom'] . ' ' . $coach['prenom']; ?>"><?php echo $coach['nom'] . ' ' . $coach['prenom']; ?></option>
-            <?php endforeach; ?>
-        </select>
-        <br>
-        <div>
-            <label for="formation">Formation:</label>
-            <textarea id="formation" name="formation" required></textarea>
-        </div>
-        <div>
-            <label for="experience">Expériences:</label>
-            <textarea id="experience" name="experience" required></textarea>
-        </div>
-        <div>
-            <label for="autres">Autres informations:</label>
-            <textarea id="autres" name="autres"></textarea>
-        </div>
-        <button type="submit">Créer CV</button>
-    </form>
+    <div class="container">
+        <h1>Créer un CV XML</h1>
+        <a class="btn btn-secondary back-button" href="compte.php">Retour</a>
+        <form action="" method="post">
+            <div class="form-group">
+                <label for="coach">Sélectionnez un coach :</label>
+                <select name="coach" id="coach">
+                    <?php foreach ($coaches as $coach): ?>
+                        <option value="<?php echo $coach['nom'] . ' ' . $coach['prenom']; ?>"><?php echo $coach['nom'] . ' ' . $coach['prenom']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="formation">Formation:</label>
+                <textarea id="formation" name="formation" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="experience">Expériences:</label>
+                <textarea id="experience" name="experience" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="autres">Autres informations:</label>
+                <textarea id="autres" name="autres"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Créer CV</button>
+        </form>
+    </div>
 </body>
 </html>

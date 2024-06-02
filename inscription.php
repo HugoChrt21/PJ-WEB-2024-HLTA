@@ -15,6 +15,21 @@ error_reporting(E_ALL);
 </head>
 
 <?php
+
+/*  $user = "root";
+ $psd = "root";
+ $db = "mysql:host=localhost;dbname=Sportify";
+
+ try {
+     $cx = new PDO($db, $user, $psd);
+     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ } catch (PDOException $e) {
+     echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
+     die();
+}
+ */
+
+
 // Informations de connexion à la base de données
 $serveur = "localhost:3307";
 $utilisateur = "root";
@@ -30,8 +45,9 @@ try {
     echo "<script>console.error('" . $error_message . "');</script>";
     die();
 }
-
+// Traitement du formulaire d'inscription lors de la soumission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_account'])) {
+  // Récupération des données du formulaire
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
@@ -48,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_account'])) {
     $nom_carte = $_POST['nom_carte'];
     $date_expiration = $_POST['date_expiration'];
     $code = $_POST['code'];
-
+    // Vérification de l'existence de l'email dans la base de données
     $stmt = $cx->prepare("SELECT COUNT(*) AS count FROM client WHERE mail = :email");
     $stmt->execute(array(':email' => $email));
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -59,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_account'])) {
     } elseif ($password != $confirm_password) {
         $error_message = "Les mots de passe ne correspondent pas.";
     } else {
-
+        // Insertion des données du client dans la table 'client'
         $sql = "INSERT INTO client (mail, nom, prenom, adresse, ville, code_postal, pays, numero_telephone, numero_carte_etudiant, type_paiement, numero_carte, nom_carte, date_expiration, code)
                 VALUES (:email, :nom, :prenom, :adresse, :ville, :code_postal, :pays, :numero_telephone, :numero_carte_etudiant, :type_paiement, :numero_carte, :nom_carte, :date_expiration, :code)";
 
@@ -85,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_account'])) {
         } catch (PDOException $e) {
             $error_message = "Une erreur est survenue lors de la création du compte : " . $e->getMessage();
         }
-
+          // Insertion des données de connexion dans la table 'connexion'
         $sql = "INSERT INTO connexion (mail, MDP, type)
                 VALUES (:email, :password, 'client')";
 
@@ -96,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['create_account'])) {
 
             $stmt->execute();
             header("Location: connexion.php");
-            exit(); // Assurez-vous que le script s'arrête après la redirection
+            exit();
         } catch (PDOException $e) {
             $error_message = "Une erreur est survenue lors de la création du compte : " . $e->getMessage();
         }

@@ -16,58 +16,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $telephone = $_POST['coachTelephone'];
     $mdp = $_POST['coachMDP'];
 
-    // Vérifier si les répertoires de destination existent, sinon, les créer
-    $uploadDir = 'image/coach/';
-    $photoDir = $uploadDir . 'photo/';
-    $cvDir = $uploadDir . 'CV/';
+    /*  $user = "root";
+    $psd = "root";
+    $db = "mysql:host=localhost;dbname=Sportify";
 
-    if (!file_exists($photoDir)) {
-        mkdir($photoDir, 0777, true);
+    try {
+        $cx = new PDO($db, $user, $psd);
+        $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
+        die();
     }
-
-    if (!file_exists($cvDir)) {
-        mkdir($cvDir, 0777, true);
-    }
-
-    // Renommer les fichiers photo et CV
-    $photoFileName = $prenom . '_' . $nom . '.jpg';
-    $cvFileName = 'CV' . $prenom . '_' . $nom . '.jpg';
-
-    // Vérifier si un fichier photo a été téléchargé
-    if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
-        $photoTempName = $_FILES['photo']['tmp_name'];
-        $photoPath = $photoDir . $photoFileName;
-
-        if (!move_uploaded_file($photoTempName, $photoPath)) {
-            echo "Erreur lors du téléchargement de la photo.";
-            exit();
-        }
-    } else {
-        // Gérer l'erreur si aucun fichier photo n'a été téléchargé
-        echo "Veuillez sélectionner une photo.";
-        exit();
-    }
-
-    // Vérifier si un fichier CV (JPG) a été téléchargé
-    if (isset($_FILES['cv']) && $_FILES['cv']['error'] === UPLOAD_ERR_OK) {
-        $cvExtension = pathinfo($_FILES['cv']['name'], PATHINFO_EXTENSION);
-        if (strtolower($cvExtension) !== 'jpg' && strtolower($cvExtension) !== 'jpeg') {
-            echo "Veuillez sélectionner un fichier JPG pour le CV.";
-            exit();
-        }
-
-        $cvTempName = $_FILES['cv']['tmp_name'];
-        $cvPath = $cvDir . $cvFileName;
-
-        if (!move_uploaded_file($cvTempName, $cvPath)) {
-            echo "Erreur lors du téléchargement du CV.";
-            exit();
-        }
-    } else {
-        // Gérer l'erreur si aucun fichier CV n'a été téléchargé
-        echo "Veuillez sélectionner un CV.";
-        exit();
-    }
+    */
 
     // Informations de connexion à la base de données
     $serveur = "localhost:3307";
@@ -79,52 +39,113 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
         $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        // Vérifier si l'email existe déjà
+        $stmt = $cx->prepare("SELECT COUNT(*) FROM coach WHERE Mail = :email");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $emailExists = $stmt->fetchColumn();
+
+        if ($emailExists) {
+            echo '<div class="error-message">Cet email est déjà utilisé par un autre coach.</div>';
+            exit();
+        }
+
+        // Vérifier si les répertoires de destination existent, sinon, les créer
+        $uploadDir = 'image/coach/';
+        $photoDir = $uploadDir . 'photo/';
+        $cvDir = $uploadDir . 'CV/';
+
+        if (!file_exists($photoDir)) {
+            mkdir($photoDir, 0777, true);
+        }
+
+        if (!file_exists($cvDir)) {
+            mkdir($cvDir, 0777, true);
+        }
+
+        // changement de noms des fichiers
+        $photoFileName = $prenom . '_' . $nom . '.jpg';
+        $cvFileName = 'CV' . $prenom . '_' . $nom . '.jpg';
+
+        // Vérifier si un fichier été déposé
+        if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+            $photoTempName = $_FILES['photo']['tmp_name'];
+            $photoPath = $photoDir . $photoFileName;
+
+            if (!move_uploaded_file($photoTempName, $photoPath)) {
+                echo "Erreur lors du téléchargement de la photo.";
+                exit();
+            }
+        } else {
+            echo "Veuillez sélectionner une photo.";
+            exit();
+        }
+
+
+
+        // Vérifier si un fichier a été déposé
+        if (isset($_FILES['cv']) && $_FILES['cv']['error'] === UPLOAD_ERR_OK) {
+            $cvExtension = pathinfo($_FILES['cv']['name'], PATHINFO_EXTENSION);
+            if (strtolower($cvExtension) !== 'jpg') {
+                echo "Veuillez sélectionner un fichier JPG pour le CV.";
+                exit();
+            }
+
+            $cvTempName = $_FILES['cv']['tmp_name'];
+            $cvPath = $cvDir . $cvFileName;
+
+            if (!move_uploaded_file($cvTempName, $cvPath)) {
+                echo "Erreur lors du téléchargement du CV.";
+                exit();
+            }
+        } else {
+            echo "Veuillez sélectionner un CV.";
+            exit();
+        }
+
+        // Insérer le coach dans la base de données
+        $stmt = $cx->prepare("INSERT INTO coach (Mail, nom, prenom, specialite, bureau, numero_telephone, photo, cv) VALUES (:email, :nom, :prenom, :specialite, :bureau, :telephone, :photo, :cv)");
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':specialite', $specialite);
+        $stmt->bindParam(':bureau', $bureau);
+        $stmt->bindParam(':telephone', $telephone);
+        $stmt->bindParam(':photo', $photoPath);
+        $stmt->bindParam(':cv', $cvPath);
+        $stmt->execute();
+
+        $sql = "INSERT INTO connexion (mail, MDP, type)
+                VALUES (:email, :password, 'coach')";
+
+        try {
+            $stmt = $cx->prepare($sql);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $mdp);
+
+            $stmt->execute();
+        } catch (PDOException $e) {
+            $error_message = "Une erreur est survenue lors de la création du compte : " . $e->getMessage();
+        }
+
+        $sql = "INSERT INTO edt (nom, prenom)
+                VALUES (:nom, :prenom)";
+
+        try {
+            $stmt = $cx->prepare($sql);
+            $stmt->bindParam(':nom', $nom);
+            $stmt->bindParam(':prenom', $prenom);
+
+            $stmt->execute();
+            header("Location: compte.php?success=Coach ajouté avec succès");
+            exit();
+        } catch (PDOException $e) {
+            $error_message = "Une erreur est survenue lors de la création du compte : " . $e->getMessage();
+        }
+
     } catch (PDOException $e) {
         echo "Une erreur est survenue : " . $e->getMessage();
     }
-    // Insérer le coach dans la base de données
-    $stmt = $cx->prepare("INSERT INTO coach (Mail, nom, prenom, specialite, bureau, numero_telephone, photo, cv) VALUES (:email, :nom, :prenom, :specialite, :bureau, :telephone, :photo, :cv)");
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':nom', $nom);
-    $stmt->bindParam(':prenom', $prenom);
-    $stmt->bindParam(':specialite', $specialite);
-    $stmt->bindParam(':bureau', $bureau);
-    $stmt->bindParam(':telephone', $telephone);
-    $stmt->bindParam(':photo', $photoPath);
-    $stmt->bindParam(':cv', $cvPath);
-    $stmt->execute();
-
-
-    $sql = "INSERT INTO connexion (mail, MDP, type)
-                VALUES (:email, :password, 'coach')";
-
-    try {
-        $stmt = $cx->prepare($sql);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $coachMDP);
-
-        $stmt->execute();
-
-    } catch (PDOException $e) {
-        $error_message = "Une erreur est survenue lors de la création du compte : " . $e->getMessage();
-    }
-
-    $sql = "INSERT INTO edt (nom, prenom)
-                VALUES (:nom, :prenom)";
-
-    try {
-        $stmt = $cx->prepare($sql);
-        $stmt->bindParam(':nom', $nom);
-        $stmt->bindParam(':prenom', $prenom);
-
-        $stmt->execute();
-        header("Location: compte.php?success=Coach ajouté avec succès");
-        exit(); // Assurez-vous que le script s'arrête après la redirection
-    } catch (PDOException $e) {
-        $error_message = "Une erreur est survenue lors de la création du compte : " . $e->getMessage();
-    }
-
-
 }
 ?>
 
@@ -136,6 +157,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un coach</title>
     <link rel="stylesheet" href="ajouter_coach.css">
+    <style>
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -175,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="text" id="coachNom" name="coachNom" required>
                 <label for="coachPrenom">Prénom :</label>
                 <input type="text" id="coachPrenom" name="coachPrenom" required>
-                <label for="">MDP :</label>
+                <label for="coachMDP">MDP :</label>
                 <input type="text" id="coachMDP" name="coachMDP" required>
                 <label for="coachSpecialite">Spécialité :</label>
                 <input type="text" id="coachSpecialite" name="coachSpecialite" required>

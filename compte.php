@@ -11,6 +11,19 @@ if (!isset($_SESSION['email'])) {
 // Récupère les informations de l'utilisateur à partir de la session
 $email = $_SESSION['email'];
 
+/*  $user = "root";
+ $psd = "root";
+ $db = "mysql:host=localhost;dbname=Sportify";
+
+ try {
+     $cx = new PDO($db, $user, $psd);
+     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ } catch (PDOException $e) {
+     echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
+     die();
+}
+ */
+
 $serveur = "localhost:3307";
 $utilisateur = "root";
 $mot_de_passe = "123";
@@ -22,47 +35,54 @@ try {
     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 } catch (PDOException $e) {
+    // En cas d'erreur de connexion, affiche un message d'erreur dans la console
     $error_message = "Une erreur est survenue lors de la connexion à la base de données : " . $e->getMessage();
     echo "<script>console.error('" . $error_message . "');</script>";
     die();
 }
 
+// Prépare et exécute une requête pour récupérer les informations de l'utilisateur à partir de l'adresse e-mail
 $stmt = $cx->prepare("SELECT * FROM connexion WHERE mail = :email");
 $stmt->bindParam(':email', $email);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($user) {
+    // Détermine le type d'utilisateur et enregistre-le dans la session
     $userType = $user['type'];
     $_SESSION['type'] = $userType;
     $id = $_SESSION['id'];
 
     if ($userType == 'client') {
+        // Récupère les informations du client
         $stmtClient = $cx->prepare("SELECT * FROM client WHERE mail = :email");
         $stmtClient->bindParam(':email', $email);
         $stmtClient->execute();
         $clientInfo = $stmtClient->fetch(PDO::FETCH_ASSOC);
 
-        // Récupérer tous les coachs pour que le client puisse les sélectionner
+        // Récupère tous les coachs pour que le client puisse les sélectionner
         $stmtCoaches = $cx->query("SELECT * FROM coach");
         $coaches = $stmtCoaches->fetchAll(PDO::FETCH_ASSOC);
     } elseif ($userType == 'coach') {
+        // Récupère les informations du coach
         $stmtCoach = $cx->prepare("SELECT * FROM coach WHERE mail = :email");
         $stmtCoach->bindParam(':email', $email);
         $stmtCoach->execute();
         $coachInfo = $stmtCoach->fetch(PDO::FETCH_ASSOC);
 
-        // Récupérer les clients
+        // Récupère les clients pour le coach
         $stmtClients = $cx->prepare("SELECT id, nom, prenom FROM client");
         $stmtClients->execute();
         $clients = $stmtClients->fetchAll(PDO::FETCH_ASSOC);
     } elseif ($userType == 'admin') {
+        // Récupère les informations de l'administrateur
         $stmtAdmin = $cx->prepare("SELECT * FROM admin1 WHERE Mail = :email");
         $stmtAdmin->bindParam(':email', $email);
         $stmtAdmin->execute();
         $adminInfo = $stmtAdmin->fetch(PDO::FETCH_ASSOC);
     }
 } else {
+    // Affiche un message d'erreur si l'utilisateur n'est pas trouvé
     echo "Utilisateur non trouvé.";
     die();
 }
@@ -78,8 +98,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['card_number']) && isse
     $paymentSuccessful = true;
 
     if ($paymentSuccessful) {
+        // Affiche un message de succès si le paiement est réussi
         echo "<script>alert('Paiement accepté ! Merci pour votre inscription à " . htmlspecialchars($activity) . "');</script>";
     } else {
+        // Affiche un message d'erreur si le paiement échoue
         echo "<script>alert('Paiement échoué. Veuillez réessayer.');</script>";
     }
 }
@@ -94,76 +116,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['card_number']) && isse
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votre Compte</title>
     <link rel="stylesheet" href="compte.css">
-    <style>
-        .chat-bubble {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #0fd850;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            font-size: 24px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .chat-window {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            width: 300px;
-            height: 400px;
-            background-color: white;
-            border: 1px solid #ccc;
-            display: none;
-            flex-direction: column;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .chat-window header {
-            background-color: #0fd850;
-            color: white;
-            padding: 10px;
-            font-size: 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-window .messages {
-            flex: 1;
-            padding: 10px;
-            overflow-y: auto;
-        }
-
-        .chat-window .input {
-            display: flex;
-            padding: 10px;
-        }
-
-        .chat-window .input input {
-            flex: 1;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-        .chat-window .input button {
-            background-color: #0fd850;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            margin-left: 5px;
-            cursor: pointer;
-            border-radius: 3px;
-            
-        }
-    </style>
 </head>
 
 <body>
@@ -288,7 +240,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['card_number']) && isse
                 </div>
             <?php endif; ?>
             <form action="deconnexion.php" method="post">
-                <button type="submit" class="button-21">Déconnexion</button>
+                <button type="submit" class="BtnDeco">Déconnexion</button>
             </form>
         </div>
     

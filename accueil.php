@@ -20,7 +20,7 @@
         </div>
     </header>
     <nav>
-        <ul>
+        <ul>    <!-- Menu Navigation -->
             <li><a href="#" class="active">Accueil</a></li>
             <li>
                 <a href="#">Tout Parcourir</a>
@@ -36,22 +36,31 @@
         </ul>
     </nav>
     <div class="wrapper">
+        <div class="welcome texte">
+            <h2>Bienvenue sur Sportify</h2>
+            <p>Nous vous souhaitons la bienvenue sur notre site de prise de rendez-vous pour la salle de sport Omnes.
+                Que vous soyez à la recherche d'activités sportives, de compétitions, ou d'une salle de sport équipée,
+                vous trouverez ici toutes les informations nécessaires pour vous inscrire et participer à nos
+                événements. Rejoignez-nous et commencez votre parcours sportif dès aujourd'hui !</p>
+        </div>
         <button id="saint-valentin-toggle" class="saint-valentin-btn">Mode Saint Valentin</button>
 
         <div class="sports">
             <a id="sport">
                 <div class="texte">
-                    <p>EVENEMENT DE LA SEMAINE </p>
+                    <p>EVENEMENT DE LA SEMAINE</p>
                 </div>
             </a>
-        <img  class="event-image"  src="./image/accueil/evenement-de-la-semaine.jpg" alt="Événement de la semaine"
+        <img class="event-image" src="./image/accueil/evenement-de-la-semaine.jpg" alt="Événement de la semaine"
             style="max-width: 70%; height: auto; margin-bottom: 40px;">
+        </div>
         <div class="sports">
             <a id="sport">
                 <div class="texte">
                     <p>NOS SPECIALITE SPORTIVES</p>
                 </div>
             </a>
+            <!-- Carousel -->
         <div id="carrousel-container">
             <div id="carrousel">
                 <ul class="slides">
@@ -71,6 +80,7 @@
                 </div>
             </div>
         </div>
+        <!-- Footer -->
         <footer class="pied-de-page">
             <div class="conteneur">
                 <p>Contactez-nous :</p>
@@ -83,15 +93,18 @@
                 <h1>OÙ SOMME NOUS</h1>
             </div>
         </footer>
+        <!-- Map -->
         <div class="content">
             <div id="map"></div>
         </div>
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <div id="hearts-container"></div> <!-- Added for hearts -->
+        <script src="https://un pkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
         <script src="accueil.js"></script>
         <script>
             $(document).ready(function() {
                 $('#saint-valentin-toggle').click(function() {
                     $('body').toggleClass('saint-valentin');
+                    $('#hearts-container').toggleClass('hearts-visible');
                 });
             });
         </script>

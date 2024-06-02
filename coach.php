@@ -9,7 +9,7 @@
 </head>
 
 <?php
-$user = "root";
+/* $user = "root";
 $psd = "root";
 $db = "mysql:host=localhost;dbname=Sportify";
 
@@ -19,7 +19,25 @@ try {
 } catch (PDOException $e) {
     echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
     die();
+} */
+
+// Informations de connexion à la base de données
+$serveur = "localhost:3307";
+$utilisateur = "root";
+$mot_de_passe = "123";
+$base_de_donnees = "Sportify";
+
+try {
+    // Connexion à la base de données
+    $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
+    $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+} catch (PDOException $e) {
+    $error_message = "Une erreur est survenue lors de la connexion à la base de données : " . $e->getMessage();
+    echo "<script>console.error('" . $error_message . "');</script>";
+    die();
 }
+
 ?>
 
 <body>
@@ -95,11 +113,13 @@ try {
         <div class="coachs">
             <?php
             try {
+                //  requête pour récupérer les coachs en fonction du sport
                 $sql = "SELECT * FROM Coach WHERE specialite = :sport";
                 $sth = $cx->prepare($sql);
                 $sth->bindParam(':sport', $sport, PDO::PARAM_STR);
                 $sth->execute();
                 $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+                // Affichage des informations des coachs
                 foreach ($result as $k => $v) {
                     echo "
                         <div class=\"coach-card\">

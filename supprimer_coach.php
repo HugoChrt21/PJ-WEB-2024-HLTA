@@ -8,30 +8,30 @@ if (!isset($_SESSION['email']) || $_SESSION['type'] != 'admin') {
 }
 
 
-$user = "root";
-$psd = "root";
-$db = "mysql:host=localhost;dbname=Sportify";
+/*  $user = "root";
+ $psd = "root";
+ $db = "mysql:host=localhost;dbname=Sportify";
+
+ try {
+     $cx = new PDO($db, $user, $psd);
+     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ } catch (PDOException $e) {
+     echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
+     die();
+}
+ */
+$serveur = "localhost:3307";
+$utilisateur = "root";
+$mot_de_passe = "123";
+$base_de_donnees = "Sportify";
 
 try {
-    $cx = new PDO($db, $user, $psd);
+    $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
-    die();
-}
 
-// $serveur = "localhost:3307";
-// $utilisateur = "root";
-// $mot_de_passe = "123";
-// $base_de_donnees = "Sportify";
-
-// try {
-//     $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
-//     $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-// } catch (PDOException $e) {
-//     echo "Une erreur est survenue : " . $e->getMessage();
-// }
+ } catch (PDOException $e) {
+     echo "Une erreur est survenue : " . $e->getMessage();
+ }
 
 
 $stmt = $cx->prepare("SELECT * FROM coach");
@@ -41,6 +41,7 @@ $coachs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
     $email = $_POST['email'];
+    // Suppresion du coach selectionner
     $stmt = $cx->prepare("DELETE FROM coach WHERE Mail = :email");
     $stmt->bindParam(':email', $email);
     $stmt->execute();
@@ -120,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email'])) {
                                     onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce coach ?');">
                                     <input type="hidden" name="email"
                                         value="<?php echo htmlspecialchars($coach['mail']); ?>">
-                                    <button class="btn-20">
+                                    <button class="btnSuppr">
                                         <svg viewBox="0 0 15 17.5" height="17.5" width="15"
                                             xmlns="http://www.w3.org/2000/svg" class="icon">
                                             <path transform="translate(-2.5 -1.25)"

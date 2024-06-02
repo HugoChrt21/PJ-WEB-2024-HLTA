@@ -10,7 +10,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-
+/* HEADER */
 header {
   height: 10%;
   display: flex;
@@ -30,7 +30,7 @@ header .logo img {
   height: 50px;
   width: 50px;
 }
-
+/* NAVIGATION */
 nav {
   height: 10%;
   display: flex;
@@ -162,7 +162,7 @@ nav ul li ul.dropdown li a:hover {
   text-decoration: underline;
 }
 
-.button-21 {
+.BtnDeco {
   width: 9em;
   height: 3em;
   border-radius: 30em;
@@ -176,7 +176,7 @@ nav ul li ul.dropdown li a:hover {
   box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
 }
 
-.button-21::before {
+.BtnDeco::before {
   content: "";
   width: 0;
   height: 3em;
@@ -190,10 +190,10 @@ nav ul li ul.dropdown li a:hover {
   z-index: -1;
 }
 
-.button-21:hover::before {
+.BtnDeco:hover::before {
   width: 9em;
 }
-
+/* Footer */
 .pied-de-page {
   background: #333;
   color: #fff;
@@ -221,6 +221,7 @@ nav ul li ul.dropdown li a:hover {
   margin-right: 0.5rem;
 }
 
+/* BOUTON ZOOM */
 .btnZoom {
   outline: 0;
   display: inline-flex;
@@ -260,6 +261,8 @@ nav ul li ul.dropdown li a:hover {
       box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.1), 0 0 0 40px rgba(255, 255, 255, 0.1), 0 0 0 60px rgba(255, 255, 255, 0.1), 0 0 0 80px rgba(255, 255, 255, 0);
   }
 }
+
+ /* BOUTON PAYER  */
 
 .BtnPayer {
   width: 130px;
@@ -310,3 +313,5 @@ nav ul li ul.dropdown li a:hover {
   transform: translate(5px,5px);
   transition-duration: .3s;
 }
+
+
