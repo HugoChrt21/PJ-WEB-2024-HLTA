@@ -151,128 +151,108 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['card_number']) && isse
             <h2>Votre Compte</h2>
             <p>Adresse e-mail : <?php echo htmlspecialchars($email); ?></p>
             <?php if ($userType == 'client'): ?>
-                <p>Nom : <?php echo htmlspecialchars($clientInfo['nom']); ?></p>
-                <p>Prénom : <?php echo htmlspecialchars($clientInfo['prenom']); ?></p>
-                <p>Adresse : <?php echo htmlspecialchars($clientInfo['adresse']); ?></p>
-                <p>Ville : <?php echo htmlspecialchars($clientInfo['ville']); ?></p>
-                <p>Code Postal : <?php echo htmlspecialchars($clientInfo['code_postal']); ?></p>
-                <p>Pays : <?php echo htmlspecialchars($clientInfo['pays']); ?></p>
-                <p>Téléphone : <?php echo htmlspecialchars($clientInfo['numero_telephone']); ?></p>
-                <p>Numéro Carte Étudiant : <?php echo htmlspecialchars($clientInfo['numero_carte_etudiant']); ?></p>
-                <div>
-                    <form action="https://zoom.us/join" method="post">
-                        <button class="btnZoom"><i class="animation"></i>Communiquer via Zoom<i
-                                class="animation"></i></button>
-                    </form>
-                </div>
-                <h2>Sélectionner un coach pour discuter</h2>
-                <form method="get" action="chat.php">
-                    <label for="coach_id">Coachs:</label>
-                    <select id="coach_id" name="coach_id">
-                        <?php foreach ($coaches as $coach): ?>
-                            <option value="<?php echo $coach['ID']; ?>">
-                                <?php echo htmlspecialchars($coach['nom'] . " " . $coach['prenom']); ?>
-                            </option>
-                        <?php endforeach; ?>
+            <p>Nom : <?php echo htmlspecialchars($clientInfo['nom']); ?></p>
+            <p>Prénom : <?php echo htmlspecialchars($clientInfo['prenom']); ?></p>
+            <p>Adresse : <?php echo htmlspecialchars($clientInfo['adresse']); ?></p>
+            <p>Ville : <?php echo htmlspecialchars($clientInfo['ville']); ?></p>
+            <p>Code Postal : <?php echo htmlspecialchars($clientInfo['code_postal']); ?></p>
+            <p>Pays : <?php echo htmlspecialchars($clientInfo['pays']); ?></p>
+            <p>Téléphone : <?php echo htmlspecialchars($clientInfo['numero_telephone']); ?></p>
+            <p>Numéro Carte Étudiant : <?php echo htmlspecialchars($clientInfo['numero_carte_etudiant']); ?></p>
+            <div>
+                <form action="https://zoom.us/join" method="post">
+                    <button class="btnZoom"><i class="animation"></i>Communiquer via Zoom<i
+                            class="animation"></i></button>
+                </form>
+            </div>
+            <h2>Sélectionner un coach pour discuter</h2>
+            <form method="get" action="chat.php">
+                <input type="hidden" name="sender_id" value="<?php echo htmlspecialchars($id); ?>">
+                <label for="coach_id">Coachs:</label>
+                <select id="coach_id" name="coach_id">
+                    <?php foreach ($coaches as $coach): ?>
+                    <option value="<?php echo $coach['ID']; ?>">
+                        <?php echo htmlspecialchars($coach['nom'] . " " . $coach['prenom']); ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
+                <input type="submit" value="Commencer la conversation">
+            </form>
+
+            <h2>Effectuer un paiement</h2>
+            <form id="payment-form" method="post" action="compte.php">
+                <div class="form-group">
+                    <label for="activity">Sélectionnez une activité :</label>
+                    <select id="activity" name="activity" class="form-control" required>
+                        <option value="activity1">Activités sportives - 25€</option>
+                        <option value="activity2">Sports de compétitions - 40€</option>
+                        <option value="activity3">Salle de sport - 30€</option>
                     </select>
-                    <input type="submit" value="Commencer la conversation">
-                </form>
+                </div>
+                <div class="form-group">
+                    <label for="card-number">Numéro de carte :</label>
+                    <input type="text" id="card-number" name="card_number" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiry-date">Date d'expiration :</label>
+                    <input type="text" id="expiry-date" name="expiry_date" class="form-control" placeholder="MM/AA"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV :</label>
+                    <input type="text" id="cvv" name="cvv" class="form-control" required>
+                </div>
+                <button type="submit" name="submit_payment" class="BtnPayer">Payer<svg class="svgIcon"
+                        viewBox="0 0 576 512">
+                        <path
+                            d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z">
+                        </path>
+                    </svg></button>
+            </form>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <h2>Effectuer un paiement</h2>
-                <form id="payment-form" method="post" action="compte.php">
-                    <div class="form-group">
-                        <label for="activity">Sélectionnez une activité :</label>
-                        <select id="activity" name="activity" class="form-control" required>
-                            <option value="activity1">Activités sportives - 25€</option>
-                            <option value="activity2">Sports de compétitions - 40€</option>
-                            <option value="activity3">Salle de sport - 30€</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="card-number">Numéro de carte :</label>
-                        <input type="text" id="card-number" name="card_number" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="expiry-date">Date d'expiration :</label>
-                        <input type="text" id="expiry-date" name="expiry_date" class="form-control" placeholder="MM/AA"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cvv">CVV :</label>
-                        <input type="text" id="cvv" name="cvv" class="form-control" required>
-                    </div>
-                    <button type="submit" name="submit_payment" class="BtnPayer">Payer<svg class="svgIcon"
-                            viewBox="0 0 576 512">
-                            <path
-                                d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z">
-                            </path>
-                        </svg></button>
-                </form>
-
-
-                <?php $_SESSION['id'] = $clientInfo['ID'] ?>
+            <?php $_SESSION['id'] = $clientInfo['ID'] ?>
             <?php elseif ($userType == 'coach'): ?>
-                <p>Nom : <?php echo htmlspecialchars($coachInfo['nom']); ?></p>
-                <p>Prénom : <?php echo htmlspecialchars($coachInfo['prenom']); ?></p>
-                <p>Spécialité : <?php echo htmlspecialchars($coachInfo['specialite']); ?></p>
-                <p>Bureau : <?php echo htmlspecialchars($coachInfo['bureau']); ?></p>
-                <div>
-                    <form action="https://zoom.us/join" method="post">
-                        <button class="btnZoom"><i class="animation"></i>Communiquer via Zoom<i
-                                class="animation"></i></button>
-                    </form>
-                </div>
-                <h2>Sélectionner un client pour discuter</h2>
-                <form method="get" action="chat.php">
-                    <label for="client_id">Clients:</label>
-                    <select id="client_id" name="client_id">
-                        <?php if (!empty($clients)): ?>
-                            <?php foreach ($clients as $client): ?>
-                                <option value="<?php echo $client['ID']; ?>">
-                                    <?php echo htmlspecialchars($client['nom'] . " " . $client['prenom']); ?>
-                                </option>
-                            <?php endforeach; ?>
-                        <?php else: ?>
-                            <option value="">Aucun client trouvé</option>
-                        <?php endif; ?>
-                    </select>
-                    <input type="submit" value="Commencer la conversation">
+            <p>Nom : <?php echo htmlspecialchars($coachInfo['nom']); ?></p>
+            <p>Prénom : <?php echo htmlspecialchars($coachInfo['prenom']); ?></p>
+            <p>Spécialité : <?php echo htmlspecialchars($coachInfo['specialite']); ?></p>
+            <p>Bureau : <?php echo htmlspecialchars($coachInfo['bureau']); ?></p>
+            <div>
+                <form action="https://zoom.us/join" method="post">
+                    <button class="btnZoom"><i class="animation"></i>Communiquer via Zoom<i
+                            class="animation"></i></button>
                 </form>
+            </div>
+            <h2>Sélectionner un client pour discuter</h2>
+            <form method="get" action="chat.php">
+                <input type="hidden" name="sender_id" value="<?php echo htmlspecialchars($id); ?>">
+                <label for="client_id">Clients:</label>
+                <select id="client_id" name="client_id">
+                    <?php if (!empty($clients)): ?>
+                    <?php foreach ($clients as $client): ?>
+                    <option value="<?php echo $client['ID']; ?>">
+                        <?php echo htmlspecialchars($client['nom'] . " " . $client['prenom']); ?>
+                    </option>
+                    <?php endforeach; ?>
+                    <?php else: ?>
+                    <option value="">Aucun client trouvé</option>
+                    <?php endif; ?>
+                </select>
+                <input type="submit" value="Commencer la conversation">
+            </form>
 
 
             <?php elseif ($userType == 'admin'): ?>
-                <div class="admin-options">
-                    <h3>Options Administrateur</h3>
-                    <ul>
-                        <li><a href="ajouter_coach.php">Ajouter un Coach</a></li>
-                        <li><a href="supprimer_coach.php">Supprimer un Coach</a></li>
-                        <li><a href="cv_crea.php">Créer un CV XML</a></li>
-                        <li><a href="supprimer_cv.php">Supprimer un CV XML</a></li>
-                        <li><a href="ajouter_admin.php">Ajouter un Administrateur</a></li>
-                    </ul>
-                </div>
+            <div class="admin-options">
+                <h3>Options Administrateur</h3>
+                <ul>
+                    <li><a href="ajouter_coach.php">Ajouter un Coach</a></li>
+                    <li><a href="supprimer_coach.php">Supprimer un Coach</a></li>
+                    <li><a href="cv_crea.php">Créer un CV XML</a></li>
+                    <li><a href="supprimer_cv.php">Supprimer un CV XML</a></li>
+                    <li><a href="ajouter_admin.php">Ajouter un Administrateur</a></li>
+                </ul>
+            </div>
             <?php endif; ?>
             <form action="deconnexion.php" method="post">
                 <button type="submit" class="BtnDeco">Déconnexion</button>
