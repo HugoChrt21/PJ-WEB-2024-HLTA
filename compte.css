@@ -315,3 +315,96 @@ nav ul li ul.dropdown li a:hover {
 }
 
 
+
+/* Bouton mode Saint Valentin */
+
+.saint-valentin-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: pink;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.saint-valentin-btn:hover {
+  background-color: deeppink;
+  color: white;
+}
+
+/* Mode Saint Valentin */
+
+body.saint-valentin {
+  background-color: #ffe6e6;
+}
+
+body.saint-valentin header {
+  background-color: #ffcccc;
+}
+
+body.saint-valentin nav {
+  background-color: #ff9999;
+}
+
+body.saint-valentin .pied-de-page {
+  background-color: #ffcccc;
+}
+
+body.saint-valentin h1,
+body.saint-valentin h2,
+body.saint-valentin p {
+  color: #ff3366;
+}
+
+body.saint-valentin .event-image,
+body.saint-valentin #carrousel-container {
+  border-color: #ff3366;
+  box-shadow: rgba(255, 99, 132, 0.4) 0px 0px 0px 2px, rgba(255, 99, 132, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+/* Style pour le titre "Sélectionner un coach pour discuter" */
+h2 {
+  font-size: 24px; /* Taille de la police */
+  color: #333; /* Couleur du texte */
+  margin-bottom: 10px; /* Marge en bas */
+}
+
+/* Style pour le label du select */
+label {
+  display: block; /* Affichage en bloc */
+  margin-bottom: 5px; /* Marge en bas */
+}
+
+/* Style pour le select */
+select {
+  width: 30%; /* Largeur du select */
+  padding: 8px; /* Remplissage intérieur */
+  border: 1px solid #ccc; /* Bordure */
+  border-radius: 5px; /* Bordure arrondie */
+  margin-bottom: 10px; /* Marge en bas */
+}
+
+/* Style pour le bouton "Commencer la conversation" */
+input[type="submit"] {
+  background-color: #333; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  padding: 10px 20px; /* Remplissage intérieur */
+  border: none; /* Suppression de la bordure */
+  border-radius: 5px; /* Bordure arrondie */
+  cursor: pointer; /* Curseur de souris */
+}
+
+/* Style pour le survol du bouton */
+input[type="submit"]:hover {
+  background-color: #0fd850; /* Couleur de fond au survol */
+}
+
+/* Style pour le focus du bouton */
+input[type="submit"]:focus {
+  outline: none; /* Suppression de la bordure de focus */
+}
