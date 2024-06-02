@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $sender_type = $_POST['sender_type'];
     $email = $_SESSION['email'];
 
-    $user = "root";
+   /*  $user = "root";
     $psd = "root";
     $db = "mysql:host=localhost;dbname=Sportify";
 
@@ -26,7 +26,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } catch (PDOException $e) {
         echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
         die();
-    }
+    } */
+
+    $serveur = "localhost:3307";
+$utilisateur = "root";
+$mot_de_passe = "123";
+$base_de_donnees = "Sportify";
+
+try {
+    // Connexion à la base de données
+    $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
+    $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+} catch (PDOException $e) {
+    // En cas d'erreur de connexion, affiche un message d'erreur dans la console
+    $error_message = "Une erreur est survenue lors de la connexion à la base de données : " . $e->getMessage();
+    echo "<script>console.error('" . $error_message . "');</script>";
+    die();
+}
 
     $conversation_id1 = $sender_id . $receiver_id;
     $conversation_id2 = $receiver_id . $sender_id;
