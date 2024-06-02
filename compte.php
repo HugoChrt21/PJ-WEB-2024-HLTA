@@ -11,7 +11,6 @@ if (!isset($_SESSION['email'])) {
 // Récupère les informations de l'utilisateur à partir de la session
 $email = $_SESSION['email'];
 
-
 $serveur = "localhost:3307";
 $utilisateur = "root";
 $mot_de_passe = "123";
@@ -28,7 +27,6 @@ try {
     die();
 }
 
-
 $stmt = $cx->prepare("SELECT * FROM connexion WHERE mail = :email");
 $stmt->bindParam(':email', $email);
 $stmt->execute();
@@ -37,10 +35,9 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($user) {
     $userType = $user['type'];
     $_SESSION['type'] = $userType;
-
+    $id = $_SESSION['id'];
 
     if ($userType == 'client') {
-
         $stmtClient = $cx->prepare("SELECT * FROM client WHERE mail = :email");
         $stmtClient->bindParam(':email', $email);
         $stmtClient->execute();
@@ -50,7 +47,6 @@ if ($user) {
         $stmtCoaches = $cx->query("SELECT * FROM coach");
         $coaches = $stmtCoaches->fetchAll(PDO::FETCH_ASSOC);
     } elseif ($userType == 'coach') {
-
         $stmtCoach = $cx->prepare("SELECT * FROM coach WHERE mail = :email");
         $stmtCoach->bindParam(':email', $email);
         $stmtCoach->execute();
@@ -71,6 +67,22 @@ if ($user) {
     die();
 }
 
+// Traitement du formulaire de paiement
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['card_number']) && isset($_POST['expiry_date']) && isset($_POST['cvv']) && isset($_POST['activity'])) {
+    $activity = $_POST['activity'];
+    $cardNumber = $_POST['card_number'];
+    $expiryDate = $_POST['expiry_date'];
+    $cvv = $_POST['cvv'];
+
+    // Simuler un paiement réussi (Vous pouvez intégrer un système de paiement réel ici)
+    $paymentSuccessful = true;
+
+    if ($paymentSuccessful) {
+        echo "<script>alert('Paiement accepté ! Merci pour votre inscription à " . htmlspecialchars($activity) . "');</script>";
+    } else {
+        echo "<script>alert('Paiement échoué. Veuillez réessayer.');</script>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -175,11 +187,9 @@ if ($user) {
                 </ul>
             </li>
             <li><a href="recherche.php">Recherche</a></li>
-            <li><a href="#">Rendez-vous</a></li>
+            <li><a href="rdv.php">Rendez-vous</a></li>
             <li><a href="compte.php" class="active">Votre Compte</a></li>
-            <?php if ($userType == 'client'): ?>
-                <li><a href="chat_client.php">Chat avec un Coach</a></li>
-            <?php endif; ?>
+            
         </ul>
     </nav>
     <div class="wrapper">
@@ -202,7 +212,7 @@ if ($user) {
                     </form>
                 </div>
                 <h2>Sélectionner un coach pour discuter</h2>
-                <form method="post" action="chat_client.php">
+                <form method="post" action="chat.php">
                     <label for="coach_id">Coachs:</label>
                     <select id="coach_id" name="coach_id">
                         <?php foreach ($coaches as $coach): ?>
@@ -211,7 +221,31 @@ if ($user) {
                     </select>
                     <input type="submit" value="Commencer la conversation">
                 </form>
-                
+
+                <h2>Effectuer un paiement</h2>
+            <form id="payment-form" method="post" action="compte.php">
+                <div class="form-group">
+                    <label for="activity">Sélectionnez une activité :</label>
+                    <select id="activity" name="activity" class="form-control" required>
+                        <option value="activity1">Activités sportives - 25€</option>
+                        <option value="activity2">Sports de compétitions - 40€</option>
+                        <option value="activity3">Salle de sport - 30€</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="card-number">Numéro de carte :</label>
+                    <input type="text" id="card-number" name="card_number" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiry-date">Date d'expiration :</label>
+                    <input type="text" id="expiry-date" name="expiry_date" class="form-control" placeholder="MM/AA" required>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV :</label>
+                    <input type="text" id="cvv" name="cvv" class="form-control" required>
+                </div>
+                <button type="submit" name="submit_payment" class="BtnPayer">Payer<svg class="svgIcon" viewBox="0 0 576 512"><path d="M512 80c8.8 0 16 7.2 16 16v32H48V96c0-8.8 7.2-16 16-16H512zm16 144V416c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V224H528zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm56 304c-13.3 0-24 10.7-24 24s10.7 24 24 24h48c13.3 0 24-10.7 24-24s-10.7-24-24-24H120zm128 0c-13.3 0-24 10.7-24 24s10.7 24 24 24H360c13.3 0 24-10.7 24-24s-10.7-24-24-24H248z"></path></svg></button>
+            </form>
 
                 <?php $_SESSION['id'] = $clientInfo['ID'] ?>
             <?php elseif ($userType == 'coach'): ?>
@@ -224,8 +258,6 @@ if ($user) {
                     <button class="btnZoom"><i class="animation"></i>Communiquer via Zoom<i class="animation"></i></button>
                     </form>
                 </div>
-                
-                
                 <h2>Sélectionner un client pour discuter</h2>
                 <form method="get" action="chat.php">
                     <label for="client_id">Clients:</label>
@@ -240,6 +272,7 @@ if ($user) {
                     </select>
                     <input type="submit" value="Commencer la conversation">
                 </form>
+                
 
             <?php elseif ($userType == 'admin'): ?>
                 <div class="admin-options">
@@ -250,11 +283,9 @@ if ($user) {
                         <li><a href="cv_crea.php">Créer un CV XML</a></li>
                         <li><a href="supprimer_cv.php">Supprimer un CV XML</a></li>
                         <li><a href="ajouter_admin.php">Ajouter un Administrateur</a></li>
-                        
                     </ul>
                 </div>
             <?php endif; ?>
-
             <form action="deconnexion.php" method="post">
                 <button type="submit" class="button-21">Déconnexion</button>
             </form>
@@ -273,10 +304,7 @@ if ($user) {
                 <li><i class="fas fa-map-marker-alt"></i> Adresse : 123 Rue de Sport, Paris, France</li>
             </ul>
         </div>
-        
-    
     </footer>
 </body>
 
 </html>
-
