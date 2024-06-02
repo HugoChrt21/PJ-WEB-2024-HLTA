@@ -35,7 +35,7 @@
     </nav>
     <div class="wrapper">
         <section class="section-recherche">
-            <h2>Recherche</h2>
+            <h1>Recherche</h1>
             <p>Rechercher rapidement des informations </p>
             <form class="form-recherche" method="GET" action="recherche.php">
                 <input type="text" placeholder="Nom, spécialité ou établissement" name="query">
@@ -55,15 +55,20 @@
                 if (isset($_GET['query'])) {
                     $query = $_GET['query'];
 
-                    $user = "root";
-                    $psd = "root";
-                    $db = "mysql:host=localhost;dbname=Sportify";
+                    $serveur = "localhost:3307";
+                    $utilisateur = "root";
+                    $mot_de_passe = "123";
+                    $base_de_donnees = "Sportify";
 
                     try {
-                        $cx = new PDO($db, $user, $psd);
+                        // Connexion à la base de données
+                        $cx = new PDO("mysql:host=$serveur;dbname=$base_de_donnees", $utilisateur, $mot_de_passe);
                         $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
                     } catch (PDOException $e) {
-                        echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
+                        // En cas d'erreur de connexion, affiche un message d'erreur dans la console
+                        $error_message = "Une erreur est survenue lors de la connexion à la base de données : " . $e->getMessage();
+                        echo "<script>console.error('" . $error_message . "');</script>";
                         die();
                     }
 
@@ -87,17 +92,25 @@
                     echo "<h4>Résultats pour les coachs:</h4>";
                     if (count($result_coach) > 0) {
                         foreach ($result_coach as $row) {
-                            echo "<p>" . htmlspecialchars($row['prenom']) . " " . htmlspecialchars($row['nom']) . " - " . htmlspecialchars($row['specialite']) . "</p>";
+                            // Début de la carte
+                            echo '<div class="result-card">';
+                            // Contenu dynamique dans la carte
+                            echo '<p>' . htmlspecialchars($row['prenom']) . " " . htmlspecialchars($row['nom']) . " - " . htmlspecialchars($row['specialite']) . '</p>';
+                            // Fin de la carte
+                            echo '</div>';
                         }
                     } else {
                         echo "<p>Aucun coach trouvé.</p>";
                     }
 
+
                     // Affichage des résultats pour les salles
                     echo "<h4>Résultats pour les salles:</h4>";
                     if (count($result_salle) > 0) {
                         foreach ($result_salle as $row) {
-                            echo "<p>" . htmlspecialchars($row['nom']) . " - " . htmlspecialchars($row['adresse']) . "</p>";
+                            echo '<div class="result-card">';
+                            echo "<p>" . htmlspecialchars($row['nom'])."</p>";
+                            echo '</div>';
                         }
                     } else {
                         echo "<p>Aucune salle trouvée.</p>";

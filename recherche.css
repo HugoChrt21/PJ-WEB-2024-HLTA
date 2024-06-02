@@ -167,6 +167,40 @@ nav ul li ul.dropdown li a:hover {
   transform: translate3d(0, 0, 0);
 }
 
+/* Ajoutez vos styles personnalisés ici */
+
+/* Titres */
+h1, h2, h3, h4 {
+  color: #333; /* Couleur du texte */
+  margin-bottom: 5px; /* Espace sous les titres */
+}
+
+/* Résultats de recherche */
+.resultats-recherche {
+  margin-top: 30px; /* Espace entre la section de recherche et les résultats */
+}
+
+.resultats-recherche h4 {
+  margin-bottom: 15px; /* Espace sous les sous-titres des résultats */
+}
+
+/* Carte pour les résultats */
+.resultats-recherche .result-card {
+  margin-bottom: 20px; /* Espace entre chaque carte de résultat */
+  background-color: #f0f0f0; /* Couleur de fond */
+  border: 2px solid #ccc; /* Bordure */
+  border-radius: 10px; /* Coins arrondis */
+  padding: 10px; /* Espacement interne */
+  
+}
+
+/* Texte dans les cartes */
+.resultats-recherche .result-card p {
+  margin: 0; /* Supprime les marges autour du texte */
+  font-size: 18px; /* Taille de la police */
+}
+
+/* Pied de page */
 .pied-de-page {
   background: #333;
   color: #fff;
@@ -192,3 +226,5 @@ nav ul li ul.dropdown li a:hover {
 .pied-de-page ul li i {
   margin-right: 0.5rem;
 }
+
+
