@@ -103,6 +103,8 @@ nav ul li ul.dropdown li a:hover {
   overflow-y: scroll;
 }
 
+
+/* BOUTON RETOUR */
 .btn-retour {
   position: fixed;
   top: 22%;

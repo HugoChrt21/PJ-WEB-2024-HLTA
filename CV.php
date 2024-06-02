@@ -9,6 +9,20 @@
 </head>
 
 <?php
+
+    /*  $user = "root";
+    $psd = "root";
+    $db = "mysql:host=localhost;dbname=Sportify";
+
+    try {
+        $cx = new PDO($db, $user, $psd);
+        $cx->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo "Une erreur est survenue lors de la connexion : " . $e->getMessage() . "</br>";
+        die();
+    }
+    */
+
 $serveur = "localhost:3307";
 $utilisateur = "root";
 $mot_de_passe = "123";
